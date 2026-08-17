@@ -33,7 +33,7 @@ export function Gallery() {
         const r = el.getBoundingClientRect();
         const progress = (window.innerHeight - r.top) / (window.innerHeight + r.height);
         el.querySelectorAll<HTMLElement>("[data-depth]").forEach((tile) => {
-          const d = Number(tile.dataset.depth ?? 0);
+          const d = Number(tile.dataset['depth'] ?? 0);
           tile.style.transform = `translate3d(0, ${(progress - 0.5) * -160 * d * 10}px, 0)`;
         });
       });
