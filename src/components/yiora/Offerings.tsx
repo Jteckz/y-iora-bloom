@@ -35,7 +35,7 @@ const OFFERINGS = [
 
 export function Offerings() {
   const [active, setActive] = useState(0);
-  const current = OFFERINGS[active];
+  const current = OFFERINGS[active] ?? OFFERINGS[0]!;
 
   return (
     <section id="offerings" className="relative overflow-hidden bg-blush py-24 sm:py-32">
