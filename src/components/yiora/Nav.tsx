@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import mark from "@/assets/yiora-mark.png.asset.json";
+import mark from "@/assets/gallery-8.png";
 import { cn } from "@/lib/utils";
 
 const LINKS = [
@@ -36,7 +36,7 @@ export function Nav() {
         )}
       >
         <a href="#top" className="flex items-center gap-2.5" aria-label="Y'IORA home">
-          <img src={mark.url} alt="" width={34} height={45} className="h-9 w-auto" />
+          <img src={mark} alt="" width={34} height={45} className="h-9 w-auto rounded-full object-cover" />
           <span className="font-display text-xl font-bold tracking-[0.18em] text-foreground">
             Y&apos;IORA
           </span>

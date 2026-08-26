@@ -1,4 +1,4 @@
-import duo from "@/assets/yiora-duo.jpg.asset.json";
+import duo from "@/assets/gallery-1.jpg";
 import { Reveal } from "./Reveal";
 
 const TIMELINE = [
@@ -49,8 +49,8 @@ export function About() {
             <div className="relative mt-10 w-fit">
               <div aria-hidden className="blob absolute -inset-6 bg-linen" />
               <img
-                src={duo.url}
-                alt="Two women from the Y'IORA community laughing and embracing"
+                src={duo}
+                alt="Women from the Y'IORA community laughing and embracing"
                 loading="lazy"
                 width={1275}
                 height={1452}

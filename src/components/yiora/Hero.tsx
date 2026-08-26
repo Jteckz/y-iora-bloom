@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import mark from "@/assets/yiora-mark.png.asset.json";
+import mark from "@/assets/gallery-8.png";
 import { PetalField } from "./PetalField";
 import { usePrefersReducedMotion } from "@/hooks/use-reveal";
 
@@ -86,7 +86,7 @@ export function Hero() {
             invite — rooms full of warmth, friendships that outlive the night, and
             experiences made to be remembered.
           </p>
-
+    
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <a
               href="#events"
@@ -127,7 +127,7 @@ export function Hero() {
               style={{ animation: "float-soft 12s ease-in-out infinite" }}
             />
             <img
-              src={mark.url}
+              src={mark}
               alt="Y'IORA emblem: a serene crowned face"
               width={953}
               height={1261}

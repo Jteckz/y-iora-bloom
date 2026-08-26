@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { toast } from "sonner";
-import mark from "@/assets/yiora-mark.png.asset.json";
+import mark from "@/assets/gallery-8.png";
 import { PetalField } from "./PetalField";
 import { Reveal } from "./Reveal";
 
@@ -18,7 +18,7 @@ export function Footer() {
 
       <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <img src={mark.url} alt="" width={953} height={1261} className="mx-auto h-16 w-auto" />
+          <img src={mark} alt="" width={953} height={1261} className="mx-auto h-16 w-auto rounded-full object-cover" />
           <h2 className="mt-6 font-display text-[clamp(2.2rem,5.5vw,3.8rem)] leading-[1.02] font-bold text-cocoa">
             Plant yourself in the garden.
           </h2>
