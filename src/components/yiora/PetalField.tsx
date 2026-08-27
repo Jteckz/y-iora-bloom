@@ -27,7 +27,7 @@ export function PetalField({ density = 1 }: { density?: number }) {
       {petals.map((p) => (
         <span
           key={p.id}
-          className="absolute top-0 block bg-petal"
+          className="petal absolute top-0 block bg-petal"
           style={
             {
               left: `${p.left}%`,

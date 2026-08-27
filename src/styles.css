@@ -73,21 +73,21 @@
   --radius: 1.25rem;
 
   /* Brand base — warm white / deep brown */
-  --background: oklch(0.985 0.008 40);        /* #FFF9F7 warm white */
-  --foreground: oklch(0.283 0.026 34);        /* #3A2C2C deep brown */
+  --background: oklch(0.985 0.008 40); /* #FFF9F7 warm white */
+  --foreground: oklch(0.283 0.026 34); /* #3A2C2C deep brown */
 
   --card: oklch(0.973 0.013 40);
   --card-foreground: oklch(0.283 0.026 34);
   --popover: oklch(0.985 0.008 40);
   --popover-foreground: oklch(0.283 0.026 34);
 
-  --primary: oklch(0.554 0.072 5);            /* #B5838D rose */
+  --primary: oklch(0.554 0.072 5); /* #B5838D rose */
   --primary-foreground: oklch(0.985 0.008 40);
-  --secondary: oklch(0.936 0.018 20);         /* #F5E6E6 blush */
+  --secondary: oklch(0.936 0.018 20); /* #F5E6E6 blush */
   --secondary-foreground: oklch(0.335 0.03 30);
   --muted: oklch(0.944 0.017 45);
   --muted-foreground: oklch(0.478 0.031 30);
-  --accent: oklch(0.756 0.043 17);            /* #D4A5A5 soft pink */
+  --accent: oklch(0.756 0.043 17); /* #D4A5A5 soft pink */
   --accent-foreground: oklch(0.283 0.026 34);
   --destructive: oklch(0.55 0.19 22);
   --destructive-foreground: oklch(0.985 0.008 40);
@@ -96,15 +96,15 @@
   --ring: oklch(0.554 0.072 5);
 
   /* Brand tokens */
-  --blush: oklch(0.936 0.018 20);             /* #F5E6E6 */
-  --petal: oklch(0.756 0.043 17);             /* #D4A5A5 */
-  --rose: oklch(0.554 0.072 5);               /* #B5838D */
-  --clay: oklch(0.552 0.107 51);              /* #A36532 earthly clay */
-  --honey: oklch(0.829 0.107 79);             /* #EDBF67 honey gold */
-  --olive: oklch(0.415 0.098 124);            /* #445B12 forest olive */
-  --berry: oklch(0.363 0.129 337);            /* #722B5D deep berry */
-  --linen: oklch(0.891 0.019 48);             /* #ECD8CD soft linen */
-  --cocoa: oklch(0.283 0.026 34);             /* #3A2C2C */
+  --blush: oklch(0.936 0.018 20); /* #F5E6E6 */
+  --petal: oklch(0.756 0.043 17); /* #D4A5A5 */
+  --rose: oklch(0.554 0.072 5); /* #B5838D */
+  --clay: oklch(0.552 0.107 51); /* #A36532 earthly clay */
+  --honey: oklch(0.829 0.107 79); /* #EDBF67 honey gold */
+  --olive: oklch(0.415 0.098 124); /* #445B12 forest olive */
+  --berry: oklch(0.363 0.129 337); /* #722B5D deep berry */
+  --linen: oklch(0.891 0.019 48); /* #ECD8CD soft linen */
+  --cocoa: oklch(0.283 0.026 34); /* #3A2C2C */
 
   /* Living gradient — driven by JS (--mx, --my, --hue-shift) */
   --mx: 50%;
@@ -112,12 +112,12 @@
   --daylight: 0;
 
   --gradient-living: radial-gradient(
-      120% 90% at var(--mx) var(--my),
-      color-mix(in oklab, var(--blush) 92%, var(--honey)) 0%,
-      color-mix(in oklab, var(--petal) 78%, var(--background)) 38%,
-      color-mix(in oklab, var(--rose) 55%, var(--linen)) 70%,
-      color-mix(in oklab, var(--berry) 22%, var(--background)) 100%
-    );
+    120% 90% at var(--mx) var(--my),
+    color-mix(in oklab, var(--blush) 92%, var(--honey)) 0%,
+    color-mix(in oklab, var(--petal) 78%, var(--background)) 38%,
+    color-mix(in oklab, var(--rose) 55%, var(--linen)) 70%,
+    color-mix(in oklab, var(--berry) 22%, var(--background)) 100%
+  );
   --gradient-warm: linear-gradient(
     135deg,
     color-mix(in oklab, var(--petal) 60%, var(--background)),
@@ -180,6 +180,27 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    /* Mobile safeguards */
+    overflow-x: clip; /* prevents horizontal scroll without breaking position:sticky */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+
+  a,
+  button,
+  [role="button"],
+  input,
+  select,
+  textarea,
+  summary {
+    touch-action: manipulation; /* removes double-tap zoom lag on mobile */
   }
 
   h1,
@@ -199,6 +220,139 @@
     outline: 2px solid var(--rose);
     outline-offset: 3px;
     border-radius: 6px;
+  }
+
+  /* Ensure form inputs have adequate height */
+  input,
+  select,
+  textarea {
+    min-height: 44px;
+  }
+}
+
+/* Mobile-first responsive utilities */
+@layer utilities {
+  /* Fluid typography clamp values */
+  .text-fluid-xs {
+    font-size: clamp(0.7rem, 0.65rem + 0.3vw, 0.85rem);
+  }
+  .text-fluid-sm {
+    font-size: clamp(0.8rem, 0.75rem + 0.35vw, 0.95rem);
+  }
+  .text-fluid-base {
+    font-size: clamp(0.95rem, 0.9rem + 0.4vw, 1.1rem);
+  }
+  .text-fluid-lg {
+    font-size: clamp(1.05rem, 1rem + 0.5vw, 1.25rem);
+  }
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 1.15rem + 0.7vw, 1.5rem);
+  }
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+  }
+  .text-fluid-3xl {
+    font-size: clamp(1.875rem, 1.5rem + 1.5vw, 2.5rem);
+  }
+  .text-fluid-4xl {
+    font-size: clamp(2.25rem, 1.75rem + 2vw, 3rem);
+  }
+  .text-fluid-5xl {
+    font-size: clamp(3rem, 2.25rem + 2.5vw, 4rem);
+  }
+
+  /* Responsive spacing utilities */
+  .space-y-fluid > * + * {
+    margin-top: clamp(0.75rem, 0.5rem + 0.5vw, 1.5rem);
+  }
+  .space-x-fluid > * + * {
+    margin-left: clamp(0.5rem, 0.35rem + 0.3vw, 1rem);
+  }
+
+  /* Safe area inset utilities for notched devices */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-left {
+    padding-left: env(safe-area-inset-left);
+  }
+  .safe-right {
+    padding-right: env(safe-area-inset-right);
+  }
+
+  /* Touch-friendly tap targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  .touch-target-sm {
+    min-height: 40px;
+    min-width: 40px;
+  }
+  .touch-target-lg {
+    min-height: 48px;
+    min-width: 48px;
+  }
+
+  /* Prevent text overflow */
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Responsive container */
+  .container-fluid {
+    width: 100%;
+    max-width: 100%;
+    padding-left: clamp(1rem, 2vw, 2rem);
+    padding-right: clamp(1rem, 2vw, 2rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Grid utilities for mobile */
+  .grid-responsive {
+    display: grid;
+    gap: clamp(0.75rem, 1vw, 1.5rem);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+  }
+
+  /* Mobile-first flex */
+  .flex-col-mobile {
+    flex-direction: column;
+  }
+  @media (min-width: 768px) {
+    .flex-col-mobile {
+      flex-direction: row;
+    }
+  }
+
+  /* Hide scrollbar but keep scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Line clamp utilities */
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 }
 
@@ -245,9 +399,12 @@
   transition:
     transform 0.5s var(--ease-silk),
     box-shadow 0.5s var(--ease-silk);
-  &:hover {
-    transform: translateY(-8px) scale(1.014);
-    box-shadow: var(--shadow-lift);
+
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      transform: translateY(-8px) scale(1.014);
+      box-shadow: var(--shadow-lift);
+    }
   }
 }
 
@@ -315,6 +472,57 @@
   animation: float-soft 9s ease-in-out infinite;
 }
 
+/* Performance: halve decorative petals on small screens */
+@media (max-width: 640px) {
+  .petal:nth-child(n + 9) {
+    display: none;
+  }
+}
+
+/* Mobile-first responsive images - ensure they never overflow */
+@media (max-width: 768px) {
+  img,
+  video {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  /* Prevent horizontal scroll from wide elements - target only problematic elements */
+  table,
+  pre,
+  code,
+  iframe,
+  canvas,
+  svg {
+    max-width: 100%;
+  }
+  
+  /* Improve touch scrolling */
+  .overflow-y-auto,
+  .overflow-auto,
+  [style*="overflow-y: auto"] {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Tablet improvements */
+@media (min-width: 769px) and (max-width: 1024px) {
+  /* Slightly larger touch targets on tablets */
+  button,
+  [role="button"],
+  a[href] {
+    min-height: 46px;
+    min-width: 46px;
+  }
+}
+
+/* Large mobile / small tablet */
+@media (min-width: 480px) and (max-width: 768px) {
+  .hide-on-mobile {
+    display: none !important;
+  }
+}
+
 /* Accessibility: honour reduced motion everywhere */
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -330,5 +538,115 @@
   .reveal {
     opacity: 1;
     transform: none;
+  }
+}
+
+/* High DPI display adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .living-gradient {
+    background-size: 140% 140%;
+  }
+}
+
+/* Landscape mobile adjustments */
+@media (max-width: 896px) and (orientation: landscape) {
+  .min-h-\[100svh\] {
+    min-height: 100svh;
+  }
+  header {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  .living-gradient,
+  .petal,
+  .blob {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+    color: black !important;
+  }
+}
+
+/* Focus visible improvements for keyboard navigation */
+:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Ensure all buttons have proper focus styles */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--rose);
+  outline-offset: 2px;
+}
+
+/* Input focus improvements */
+input[type="email"],
+input[type="text"],
+input[type="search"],
+textarea {
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+input[type="email"]:focus,
+input[type="text"]:focus,
+input[type="search"]:focus,
+textarea:focus {
+  border-color: var(--rose);
+  box-shadow: 0 0 0 3px color-mix(in oklab, var(--rose) 30%, transparent);
+}
+
+/* Better form validation styling */
+input:invalid:not(:placeholder-shown),
+textarea:invalid:not(:placeholder-shown) {
+  border-color: var(--destructive);
+}
+
+input:valid:not(:placeholder-shown),
+textarea:valid:not(:placeholder-shown) {
+  border-color: var(--olive);
+}
+
+/* Ensure all sections have adequate padding on mobile */
+section {
+  padding-left: clamp(1rem, 3vw, 2rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+/* Prevent content overflow in hero and other full-width sections */
+.min-h-\[100svh\],
+.min-h-screen {
+  overflow-x: hidden;
+}
+
+/* Responsive hero heading */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: clamp(2rem, 8vw, 3.5rem);
+    line-height: 1.05;
+  }
+}
+
+/* Ensure footer form stacks properly on mobile */
+@media (max-width: 640px) {
+  footer form.flex-row {
+    flex-direction: column;
+  }
+  footer form.flex-row > * {
+    width: 100%;
   }
 }

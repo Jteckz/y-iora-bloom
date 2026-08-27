@@ -63,7 +63,10 @@ export function CustomCursor() {
         ref={halo}
         className="yiora-halo absolute -ml-[19px] -mt-[19px] h-[38px] w-[38px] rounded-full border border-rose/50 bg-petal/15"
       />
-      <div ref={dot} className="absolute -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-rose" />
+      <div
+        ref={dot}
+        className="absolute -ml-[3px] -mt-[3px] h-[6px] w-[6px] rounded-full bg-rose"
+      />
     </div>
   );
 }

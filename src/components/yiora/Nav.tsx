@@ -25,7 +25,7 @@ export function Nav() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-500",
-        scrolled ? "py-2" : "py-5",
+        scrolled ? "py-2" : "py-4",
       )}
     >
       <nav
@@ -35,8 +35,14 @@ export function Nav() {
           scrolled ? "glass-card mx-3 sm:mx-auto" : "bg-transparent",
         )}
       >
-        <a href="#top" className="flex items-center gap-2.5" aria-label="Y'IORA home">
-          <img src={mark} alt="" width={34} height={45} className="h-9 w-auto rounded-full object-cover" />
+        <a href="#top" className="flex items-center gap-2.5 min-h-[44px]" aria-label="Y'IORA home">
+          <img
+            src={mark}
+            alt=""
+            width={34}
+            height={45}
+            className="h-9 w-auto rounded-full object-cover"
+          />
           <span className="font-display text-xl font-bold tracking-[0.18em] text-foreground">
             Y&apos;IORA
           </span>
@@ -47,7 +53,7 @@ export function Nav() {
             <li key={l.href}>
               <a
                 href={l.href}
-                className="group relative text-sm font-medium text-foreground/80 transition-colors hover:text-foreground"
+                className="group relative text-sm font-medium text-foreground/80 transition-colors hover:text-foreground min-h-[44px] flex items-center"
               >
                 {l.label}
                 <span className="absolute -bottom-1 left-0 h-px w-0 bg-rose transition-all duration-500 group-hover:w-full" />
@@ -59,7 +65,7 @@ export function Nav() {
         <div className="flex items-center gap-2">
           <a
             href="#join"
-            className="hidden rounded-full bg-cocoa px-5 py-2.5 text-sm font-medium text-background shadow-petal transition-all duration-500 hover:bg-berry sm:inline-flex"
+            className="hidden min-h-[44px] items-center rounded-full bg-cocoa px-5 py-2.5 text-sm font-medium text-background shadow-petal transition-all duration-500 hover:bg-berry sm:inline-flex touch-target"
           >
             Join the circle
           </a>
@@ -67,20 +73,21 @@ export function Nav() {
             type="button"
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
+            aria-controls="mobile-menu"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-background/70 md:hidden"
+            className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-border bg-background/70 md:hidden touch-target"
           >
-            <span className="relative block h-3 w-5">
+            <span className="relative block h-4 w-6">
               <span
                 className={cn(
-                  "absolute left-0 h-px w-5 bg-foreground transition-all duration-300",
-                  open ? "top-1.5 rotate-45" : "top-0",
+                  "absolute left-0 h-px w-6 bg-foreground transition-all duration-300",
+                  open ? "top-2 rotate-45" : "top-0",
                 )}
               />
               <span
                 className={cn(
-                  "absolute left-0 h-px w-5 bg-foreground transition-all duration-300",
-                  open ? "top-1.5 -rotate-45" : "top-3",
+                  "absolute left-0 h-px w-6 bg-foreground transition-all duration-300",
+                  open ? "top-2 -rotate-45" : "top-4",
                 )}
               />
             </span>
@@ -89,14 +96,17 @@ export function Nav() {
       </nav>
 
       {open && (
-        <div className="glass-card mx-3 mt-2 rounded-3xl p-4 md:hidden">
-          <ul className="flex flex-col">
+        <div
+          id="mobile-menu"
+          className="glass-card mx-3 mt-2 max-h-[calc(100svh-6rem)] overflow-y-auto overscroll-contain rounded-3xl p-3 md:hidden safe-bottom"
+        >
+          <ul className="flex flex-col gap-1">
             {LINKS.concat({ href: "#join", label: "Join the circle" }).map((l) => (
               <li key={l.href}>
                 <a
                   href={l.href}
                   onClick={() => setOpen(false)}
-                  className="block rounded-2xl px-4 py-3.5 font-display text-lg text-foreground transition-colors hover:bg-blush"
+                  className="flex min-h-[48px] items-center rounded-2xl px-4 py-4 font-display text-lg text-foreground transition-colors hover:bg-blush active:bg-blush touch-target-lg"
                 >
                   {l.label}
                 </a>

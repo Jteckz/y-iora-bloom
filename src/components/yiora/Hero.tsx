@@ -68,29 +68,29 @@ export function Hero() {
         className="absolute inset-0 bg-gradient-to-b from-background/35 via-background/10 to-background"
       />
 
-      <div className="relative mx-auto grid min-h-[100svh] max-w-6xl grid-cols-12 items-end gap-6 px-5 pt-32 pb-16 sm:px-8 lg:items-center lg:pb-24">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-6xl grid-cols-12 items-start gap-6 px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16 lg:items-center lg:pb-20 lg:px-8">
         <div className="col-span-12 lg:col-span-7">
-          <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-rose/30 bg-background/60 px-4 py-1.5 text-xs tracking-[0.22em] uppercase text-rose backdrop-blur">
-            <span className="h-1.5 w-1.5 rounded-full bg-honey" />
+          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose/30 bg-background/60 px-3 py-1 text-xs tracking-[0.22em] uppercase text-rose backdrop-blur touch-target-sm">
+            <span className="h-1.5 w-1.5 rounded-full bg-honey flex-shrink-0" />
             {greeting}
           </p>
 
-          <h1 className="font-display text-[clamp(2.9rem,9vw,6.5rem)] leading-[0.94] font-bold tracking-[-0.02em] text-cocoa">
+          <h1 className="font-display text-[clamp(2.2rem,10vw,5.5rem)] leading-[1.0] font-bold tracking-[-0.02em] text-cocoa text-balance">
             Life is not <br />
             about existing.
             <span className="block text-gradient-warm italic">It&apos;s about blooming.</span>
           </h1>
 
-          <p className="mt-7 max-w-lg text-base leading-relaxed text-foreground/80 sm:text-lg">
-            Y&apos;IORA curates lifestyle events for women who want more than a calendar
-            invite — rooms full of warmth, friendships that outlive the night, and
-            experiences made to be remembered.
+          <p className="mt-5 max-w-lg text-sm leading-relaxed text-foreground/80 sm:text-base">
+            Y&apos;IORA curates lifestyle events for women who want more than a calendar invite —
+            rooms full of warmth, friendships that outlive the night, and experiences made to be
+            remembered.
           </p>
-    
-          <div className="mt-9 flex flex-wrap items-center gap-3">
+
+          <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <a
               href="#events"
-              className="group inline-flex min-h-11 items-center gap-3 rounded-full bg-cocoa px-7 py-3.5 font-medium text-background shadow-lift transition-all duration-500 hover:bg-berry"
+              className="group inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-cocoa px-6 py-3 font-medium text-background shadow-lift transition-all duration-500 hover:bg-berry touch-target"
             >
               See what&apos;s coming
               <span className="transition-transform duration-500 group-hover:translate-x-1">
@@ -99,31 +99,33 @@ export function Hero() {
             </a>
             <a
               href="#about"
-              className="inline-flex min-h-11 items-center rounded-full border border-cocoa/25 px-7 py-3.5 font-medium text-cocoa transition-all duration-500 hover:border-cocoa/60 hover:bg-background/60"
+              className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-cocoa/25 px-6 py-3 font-medium text-cocoa transition-all duration-500 hover:border-cocoa/60 hover:bg-background/60 touch-target"
             >
               Our story
             </a>
           </div>
 
-          <dl className="mt-12 flex flex-wrap gap-x-10 gap-y-4">
+          <dl className="mt-10 flex flex-wrap gap-x-6 gap-y-4 sm:gap-x-8" role="list">
             {[
               ["Founded", "2026"],
               ["Gatherings", "Monthly"],
               ["Women connected", "600+"],
             ].map(([k, v]) => (
-              <div key={k}>
-                <dt className="text-[0.7rem] tracking-[0.2em] uppercase text-foreground/55">{k}</dt>
-                <dd className="font-display text-2xl font-bold text-cocoa">{v}</dd>
+              <div key={k} className="min-w-0 flex-1 min-w-[120px]">
+                <dt className="text-[0.65rem] tracking-[0.2em] uppercase text-foreground/55">
+                  {k}
+                </dt>
+                <dd className="font-display text-xl font-bold text-cocoa sm:text-2xl">{v}</dd>
               </div>
             ))}
           </dl>
         </div>
 
         <div className="col-span-12 flex justify-center lg:col-span-5 lg:justify-end">
-          <div className="relative">
+          <div className="relative w-full max-w-[340px]">
             <div
               aria-hidden
-              className="blob absolute -inset-10 bg-background/45 backdrop-blur-md"
+              className="blob absolute -inset-6 bg-background/45 backdrop-blur-md"
               style={{ animation: "float-soft 12s ease-in-out infinite" }}
             />
             <img
@@ -131,7 +133,9 @@ export function Hero() {
               alt="Y'IORA emblem: a serene crowned face"
               width={953}
               height={1261}
-              className="animate-float-soft relative w-[min(58vw,340px)] drop-shadow-[0_30px_50px_rgba(58,44,44,0.25)]"
+              fetchPriority="high"
+              decoding="async"
+              className="animate-float-soft relative w-full max-w-[340px] drop-shadow-[0_30px_50px_rgba(58,44,44,0.25)]"
             />
           </div>
         </div>
