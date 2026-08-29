@@ -1,44 +1,19 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
+import { ComingSoon } from "./ComingSoon";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
 import g3 from "@/assets/gallery-3.jpg";
 import g5 from "@/assets/gallery-5.jpg";
 
-const EVENTS = [
-  {
-    title: "The Long Table",
-    date: "12 Sep",
-    place: "Rooftop, Masaki",
-    seats: "24 seats",
-    img: g1,
-    blurb: "Sunset brunch, one very long table, and conversation cards that go somewhere real.",
-  },
-  {
-    title: "Sunrise Circle",
-    date: "27 Sep",
-    place: "Botanical Garden",
-    seats: "40 mats",
-    img: g2,
-    blurb: "Slow flow, breathwork and cold pressed everything — before the city wakes up.",
-  },
-  {
-    title: "Candlelight Supper",
-    date: "18 Oct",
-    place: "The Old House",
-    seats: "18 seats",
-    img: g3,
-    blurb: "A four-course evening with a storyteller between each course. Dress like you mean it.",
-  },
-  {
-    title: "Makers' Sunday",
-    date: "09 Nov",
-    place: "Clay Studio",
-    seats: "16 places",
-    img: g5,
-    blurb: "Throw a bowl, style a bouquet, write the letter you've been avoiding.",
-  },
-];
+const EVENTS: {
+  title: string;
+  date: string;
+  place: string;
+  seats: string;
+  img: string;
+  blurb: string;
+}[] = [];
 
 /** 3D coverflow carousel — swipe on touch, arrows and keyboard on desktop. */
 export function Events() {
@@ -67,6 +42,8 @@ export function Events() {
     node?.addEventListener("keydown", onKey as EventListener);
     return () => node?.removeEventListener("keydown", onKey as EventListener);
   }, [go]);
+
+  if (count === 0) return <ComingSoon />;
 
   return (
     <section
