@@ -486,7 +486,7 @@
     max-width: 100%;
     height: auto;
   }
-  
+
   /* Prevent horizontal scroll from wide elements - target only problematic elements */
   table,
   pre,
@@ -496,7 +496,7 @@
   svg {
     max-width: 100%;
   }
-  
+
   /* Improve touch scrolling */
   .overflow-y-auto,
   .overflow-auto,
@@ -552,9 +552,6 @@
 @media (max-width: 896px) and (orientation: landscape) {
   .min-h-\[100svh\] {
     min-height: 100svh;
-  }
-  header {
-    padding-top: env(safe-area-inset-top);
   }
 }
 
