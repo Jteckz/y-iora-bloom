@@ -28,7 +28,7 @@ export function About() {
   return (
     <section
       id="about"
-      className="relative scroll-mt-20 overflow-hidden bg-background py-16 sm:py-24"
+      className="relative scroll-mt-20 overflow-hidden bg-background py-12 sm:py-16"
     >
       <div
         aria-hidden
@@ -36,7 +36,7 @@ export function About() {
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 lg:gap-10">
           <Reveal className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
             <p className="kicker">Our story</p>
             <h2 className="mt-4 font-display text-[clamp(2rem,4.8vw,3.4rem)] leading-[0.98] font-[650] tracking-[-0.03em] text-cocoa text-balance">
@@ -58,10 +58,6 @@ export function About() {
                 height={1452}
                 className="w-full aspect-[4/5] object-cover rounded-[1.5rem] border border-cocoa/10 shadow-soft"
               />
-              <span className="absolute -right-2 bottom-6 rotate-[-2deg] rounded-full bg-honey px-3 py-1.5 font-display text-[0.78rem] font-semibold tracking-wide text-cocoa shadow-soft border border-honey/20 whitespace-nowrap">
-                Since 2026
-              </span>
-              <span className="absolute -left-3 top-6 hidden sm:block rounded-full bg-background px-3 py-1.5 text-xs font-medium text-cocoa/70 shadow-soft border border-cocoa/10">Tanzania</span>
             </div>
           </Reveal>
 

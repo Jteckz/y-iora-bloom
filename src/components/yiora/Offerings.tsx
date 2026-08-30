@@ -49,7 +49,7 @@ export function Offerings() {
   return (
     <section
       id="offerings"
-      className="relative scroll-mt-20 overflow-hidden bg-blush py-16 sm:py-24"
+      className="relative scroll-mt-20 overflow-hidden bg-blush py-12 sm:py-16"
     >
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cocoa/10 to-transparent" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -61,7 +61,7 @@ export function Offerings() {
           <p className="mt-4 max-w-[46ch] text-[0.92rem] leading-[1.6] text-cocoa/60">Pick a circle. The rest finds you — suppers, sunrises, studios and salons.</p>
         </Reveal>
 
-        <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
+        <div className="mt-8 grid grid-cols-1 gap-6 lg:grid-cols-12 lg:items-start lg:gap-8">
           {/* Interactive circles */}
           <Reveal className="lg:col-span-6">
             {isMobile ? (

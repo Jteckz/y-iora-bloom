@@ -76,7 +76,7 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto grid min-h-[100svh] max-w-6xl grid-cols-12 items-start gap-6 px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16 lg:items-center lg:pb-20 lg:px-8">
+      <div className="relative mx-auto grid min-h-[100svh] max-w-6xl grid-cols-12 items-start gap-6 px-4 pt-16 pb-10 sm:px-6 sm:pt-20 sm:pb-12 lg:items-center lg:pb-14 lg:px-8">
         <div className="col-span-12 lg:col-span-7">
           <p className="mb-5 inline-flex items-center gap-2.5 text-[0.68rem] tracking-[0.22em] uppercase text-cocoa/70">
             {greeting}
@@ -116,7 +116,7 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="mt-10 flex gap-0 divide-x divide-cocoa/10 border-y border-cocoa/10 py-5" role="list">
+          <dl className="mt-8 flex gap-0 divide-x divide-cocoa/10 border-y border-cocoa/10 py-4" role="list">
             {[
               ["Founded", "2026"],
               ["Gatherings", "Monthly"],
@@ -135,15 +135,6 @@ export function Hero() {
 
         <div className="col-span-12 flex justify-center lg:col-span-5 lg:justify-end">
           <div className="relative w-full max-w-[360px]">
-            {/* tactile paper mat behind art — not a frosted blob */}
-            <div
-              aria-hidden
-              className="absolute -inset-3 rounded-[2rem] bg-linen border border-cocoa/8 shadow-soft rotate-[1.2deg]"
-            />
-            <div
-              aria-hidden
-              className="absolute -inset-3 rounded-[2rem] bg-background border border-border/60 shadow-[0_2px_10px_rgba(58,44,44,0.06)] rotate-[-0.6deg]"
-            />
             <img
               src={mark}
               alt="Y'IORA emblem: a serene crowned face"
@@ -151,12 +142,9 @@ export function Hero() {
               height={1261}
               fetchPriority="high"
               decoding="async"
-              className="relative w-full max-w-[340px] rounded-[1.75rem] border border-cocoa/10 bg-background shadow-soft object-cover aspect-[3/4]"
+              className="w-full max-w-[340px] rounded-[1.5rem] border border-cocoa/10 bg-background shadow-soft object-cover aspect-[3/4]"
               style={{ animation: reduced ? undefined : "float-soft 14s var(--ease-silk) infinite" }}
             />
-            <span className="absolute -bottom-2 -right-2 rotate-[-3deg] rounded-full bg-honey px-3 py-1.5 font-display text-xs font-semibold tracking-wide text-cocoa shadow-soft border border-honey/30">
-              Since 2026 · Tanzania
-            </span>
           </div>
         </div>
       </div>

@@ -32,7 +32,7 @@ const VOICES = [
 
 export function Testimonials() {
   return (
-    <section id="voices" className="relative scroll-mt-20 overflow-hidden bg-linen py-16 sm:py-24">
+    <section id="voices" className="relative scroll-mt-20 overflow-hidden bg-linen py-12 sm:py-16">
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cocoa/8 to-transparent" />
       <div
         aria-hidden

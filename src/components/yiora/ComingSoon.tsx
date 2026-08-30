@@ -8,7 +8,7 @@ export function ComingSoon() {
   return (
     <section
       id="events"
-      className="relative flex min-h-[88svh] items-center justify-center overflow-hidden bg-cocoa py-24 text-background sm:py-32"
+      className="relative flex min-h-[70svh] items-center justify-center overflow-hidden bg-cocoa py-16 text-background sm:py-20"
     >
       {/* Bronze radial glow — muted, editorial */}
       <div aria-hidden className="bronze-glow absolute inset-0 opacity-60" />
@@ -52,7 +52,7 @@ export function ComingSoon() {
         <Reveal delay={300}>
           <a
             href="#join"
-            className="pressable group mt-10 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-background px-7 py-3 text-[0.94rem] font-[600] tracking-[-0.01em] text-cocoa shadow-soft transition-[transform,background-color] duration-200 ease-out hover:bg-blush active:scale-[0.97] touch-target"
+            className="pressable group mt-8 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-background px-7 py-3 text-[0.94rem] font-[600] tracking-[-0.01em] text-cocoa shadow-soft transition-[transform,background-color] duration-200 ease-out hover:bg-blush active:scale-[0.97] touch-target"
           >
             Join the Circle
             <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">

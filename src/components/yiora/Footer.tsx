@@ -12,7 +12,7 @@ export function Footer() {
   return (
     <footer
       id="join"
-      className="relative isolate scroll-mt-20 overflow-hidden bg-blush pt-16 pb-8 sm:pt-24 sm:pb-10"
+      className="relative isolate scroll-mt-20 overflow-hidden bg-blush pt-12 pb-8 sm:pt-16 sm:pb-8"
     >
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cocoa/10 to-transparent" />
       <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-background/0 via-transparent to-linen/60" />
@@ -70,7 +70,7 @@ export function Footer() {
         </Reveal>
 
         {/* Community garden — quieter, less toy-like */}
-        <div className="mt-14 flex flex-wrap items-end justify-center gap-x-5 gap-y-8 border-y border-cocoa/8 py-8">
+        <div className="mt-10 flex flex-wrap items-end justify-center gap-x-5 gap-y-6 border-y border-cocoa/8 py-6">
           {FLOWERS.map((f, i) => (
             <div key={f} className="group flex flex-col items-center" data-cursor="grow">
               <span
@@ -98,7 +98,7 @@ export function Footer() {
         </div>
 
         <div className="mt-8 flex flex-col items-center gap-4 text-center text-sm text-cocoa/60 sm:flex-row sm:justify-between sm:text-left">
-          <p className="font-display text-[0.72rem] tracking-[0.16em] font-semibold text-cocoa">Y&apos;IORA &mdash; EST. 2026 · NAIROBI</p>
+          <p className="font-display text-[0.72rem] tracking-[0.16em] font-semibold text-cocoa">Y&apos;IORA &mdash; SINCE 2026 · TANZANIA</p>
           <nav aria-label="Social" className="flex items-center gap-1.5 flex-wrap justify-center">
             {["Instagram", "TikTok", "WhatsApp"].map((s) => (
               <a
