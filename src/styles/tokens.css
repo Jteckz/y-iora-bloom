@@ -1,0 +1,7 @@
+/**
+ * tokens.css — design token seam (extracted from styles.css)
+ * Owns: @theme inline, :root brand vars, --radius, --shadow-*, --ease-*
+ * Imported by styles.css via @import. Future: standalone token package.
+ * NOTE: Currently tokens still live in styles.css:13-172 for build stability.
+ * This file documents the seam; next step is to move :root there.
+ */

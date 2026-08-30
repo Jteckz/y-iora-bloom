@@ -89,13 +89,15 @@ export function Hero() {
             Life is not
             <br />
             <span className="font-light tracking-[-0.05em]">about existing.</span>
-            <span className="mt-1 block font-display text-gradient-warm italic font-normal tracking-[-0.03em]">It&apos;s about blooming.</span>
+            <span className="mt-1 block font-display text-gradient-warm italic font-normal tracking-[-0.03em]">
+              It&apos;s about blooming.
+            </span>
           </h1>
 
           <p className="mt-5 max-w-[46ch] text-[0.95rem] leading-[1.7] text-cocoa/70 sm:text-[1.02rem]">
             Y&apos;IORA curates lifestyle events for women who want more than a calendar invite —
-            <em className="font-display italic text-cocoa">rooms full of warmth</em>, friendships that outlive the night, and experiences made to be
-            remembered.
+            <em className="font-display italic text-cocoa">rooms full of warmth</em>, friendships
+            that outlive the night, and experiences made to be remembered.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
@@ -116,7 +118,10 @@ export function Hero() {
             </a>
           </div>
 
-          <dl className="mt-8 flex gap-0 divide-x divide-cocoa/10 border-y border-cocoa/10 py-4" role="list">
+          <dl
+            className="mt-8 flex gap-0 divide-x divide-cocoa/10 border-y border-cocoa/10 py-4"
+            role="list"
+          >
             {[
               ["Founded", "2026"],
               ["Gatherings", "Monthly"],
@@ -126,16 +131,25 @@ export function Hero() {
                 <dt className="text-[0.62rem] tracking-[0.18em] uppercase text-cocoa/50 font-medium">
                   {k}
                 </dt>
-                <dd className="mt-1 font-display text-[1.35rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.5rem]">{v}</dd>
+                <dd className="mt-1 font-display text-[1.35rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.5rem]">
+                  {v}
+                </dd>
               </div>
             ))}
           </dl>
-          <p className="mt-3 text-[0.72rem] leading-relaxed text-cocoa/45">Small rooms, on purpose — every seat is curated.</p>
+          <p className="mt-3 text-[0.72rem] leading-relaxed text-cocoa/45">
+            Small rooms, on purpose — every seat is curated.
+          </p>
         </div>
 
         <div className="col-span-12 flex justify-center lg:col-span-5 lg:justify-end">
           <div className="relative w-full max-w-[380px] lg:-ml-8">
-            <div className="bloom-mask overflow-hidden border border-cocoa/10 bg-background shadow-lift rotate-[-0.8deg]" style={{ animation: reduced ? undefined : "float-soft 14s var(--ease-silk) infinite" }}>
+            <div
+              className="bloom-mask overflow-hidden border border-cocoa/10 bg-background shadow-lift rotate-[-0.8deg]"
+              style={{
+                animation: reduced ? undefined : "float-soft 14s var(--ease-silk) infinite",
+              }}
+            >
               <img
                 src={mark}
                 alt="Y'IORA emblem: a serene crowned face"
@@ -146,7 +160,11 @@ export function Hero() {
                 className="w-full max-w-[380px] object-cover aspect-[4/5]"
               />
             </div>
-            <div aria-hidden className="absolute -z-10 -inset-4 bg-linen/60 -rotate-[1.2deg] hidden sm:block" style={{ borderRadius: "58% 42% 48% 52% / 44% 52% 48% 56%", filter: "blur(8px)" }} />
+            <div
+              aria-hidden
+              className="absolute -z-10 -inset-4 bg-linen/60 -rotate-[1.2deg] hidden sm:block"
+              style={{ borderRadius: "58% 42% 48% 52% / 44% 52% 48% 56%", filter: "blur(8px)" }}
+            />
           </div>
         </div>
       </div>

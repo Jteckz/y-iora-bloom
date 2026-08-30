@@ -1,0 +1,6 @@
+/**
+ * motion.css — motion seam (extracted from styles.css)
+ * Owns: .reveal/.reveal-in, @keyframes drift/float-soft/petal-fall/marquee/smoke-*/bloom,
+ *        .living-gradient, prefers-reduced-motion overrides.
+ * Imported by styles.css. Test surface: Reveal + motion tokens.
+ */

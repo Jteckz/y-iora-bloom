@@ -30,14 +30,5 @@ export function useReveal<T extends HTMLElement = HTMLDivElement>(threshold = 0.
   return { ref, shown };
 }
 
-export function usePrefersReducedMotion() {
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const update = () => setReduced(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  return reduced;
-}
+// Reduced-motion now lives in the unified viewport seam — re-export for backwards compat.
+export { usePrefersReducedMotion } from "./use-viewport";

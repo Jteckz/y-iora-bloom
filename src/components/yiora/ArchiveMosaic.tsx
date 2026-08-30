@@ -1,26 +1,8 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
+import { useMedia } from "@/hooks/use-viewport";
 
 import "./ArchiveMosaic.css";
-
-const useMedia = (queries: string[], values: number[], defaultValue: number) => {
-  const get = () => {
-    if (typeof window === "undefined") return defaultValue;
-    const idx = queries.findIndex((q) => window.matchMedia(q).matches);
-    return values[idx] ?? defaultValue;
-  };
-
-  const [value, setValue] = useState(get);
-
-  useEffect(() => {
-    const handler = () => setValue(get());
-    queries.forEach((q) => window.matchMedia(q).addEventListener("change", handler));
-    return () => queries.forEach((q) => window.matchMedia(q).removeEventListener("change", handler));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [queries.join(",")]);
-
-  return value;
-};
 
 const useMeasure = () => {
   const ref = useRef<HTMLDivElement | null>(null);
@@ -70,8 +52,12 @@ interface GridItem extends MasonryItem {
   h: number;
 }
 
+type ArchiveVariant = "static" | "animated";
+
 interface ArchiveMosaicProps {
   items: MasonryItem[];
+  /** Deep seam: prefer variant over raw knobs */
+  variant?: ArchiveVariant;
   ease?: string;
   duration?: number;
   stagger?: number;
@@ -82,17 +68,35 @@ interface ArchiveMosaicProps {
   colorShiftOnHover?: boolean;
 }
 
+const VARIANT_PRESETS: Record<ArchiveVariant, Partial<ArchiveMosaicProps>> = {
+  static: {
+    duration: 0,
+    stagger: 0,
+    blurToFocus: false,
+    scaleOnHover: false,
+    colorShiftOnHover: false,
+  },
+  animated: { duration: 0.6, stagger: 0.05, blurToFocus: true, scaleOnHover: true },
+};
+
 const ArchiveMosaic = ({
   items,
+  variant,
   ease = "power3.out",
-  duration = 0.6,
-  stagger = 0.05,
+  duration: durationProp = 0.6,
+  stagger: staggerProp = 0.05,
   animateFrom = "bottom",
-  scaleOnHover = true,
+  scaleOnHover: scaleOnHoverProp = true,
   hoverScale = 0.95,
-  blurToFocus = true,
-  colorShiftOnHover = false,
+  blurToFocus: blurToFocusProp = true,
+  colorShiftOnHover: colorShiftOnHoverProp = false,
 }: ArchiveMosaicProps) => {
+  const preset = variant ? VARIANT_PRESETS[variant] : {};
+  const duration = preset.duration ?? durationProp;
+  const stagger = preset.stagger ?? staggerProp;
+  const blurToFocus = preset.blurToFocus ?? blurToFocusProp;
+  const scaleOnHover = preset.scaleOnHover ?? scaleOnHoverProp;
+  const colorShiftOnHover = preset.colorShiftOnHover ?? colorShiftOnHoverProp;
   const columns = useMedia(
     ["(min-width:1500px)", "(min-width:1000px)", "(min-width:600px)", "(min-width:400px)"],
     [4, 3, 3, 2],
@@ -109,7 +113,12 @@ const ArchiveMosaic = ({
     let direction = animateFrom;
 
     if (animateFrom === "random") {
-      const directions: Array<"top" | "bottom" | "left" | "right"> = ["top", "bottom", "left", "right"];
+      const directions: Array<"top" | "bottom" | "left" | "right"> = [
+        "top",
+        "bottom",
+        "left",
+        "right",
+      ];
       direction = directions[Math.floor(Math.random() * directions.length)] as typeof animateFrom;
     }
 
@@ -136,6 +145,8 @@ const ArchiveMosaic = ({
     preloadImages(items.map((i) => i.img)).then(() => setImagesReady(true));
   }, [items]);
 
+  // Archive grid math — height/2 is display-scale factor (image height → css height)
+  const DISPLAY_SCALE = 0.5;
   const grid = useMemo<GridItem[]>(() => {
     if (!width) return [];
 
@@ -145,7 +156,7 @@ const ArchiveMosaic = ({
     return items.map((child) => {
       const col = colHeights.indexOf(Math.min(...colHeights));
       const x = columnWidth * col;
-      const height = child.height / 2;
+      const height = child.height * DISPLAY_SCALE;
       const y = colHeights[col];
 
       colHeights[col] += height;
@@ -193,18 +204,14 @@ const ArchiveMosaic = ({
             ...(blurToFocus && { filter: "blur(10px)" }),
           };
 
-          gsap.fromTo(
-            selector,
-            initialState,
-            {
-              opacity: 1,
-              ...animationProps,
-              ...(blurToFocus && { filter: "blur(0px)" }),
-              duration: 0.8,
-              ease: "power3.out",
-              delay: index * stagger,
-            },
-          );
+          gsap.fromTo(selector, initialState, {
+            opacity: 1,
+            ...animationProps,
+            ...(blurToFocus && { filter: "blur(0px)" }),
+            duration: 0.8,
+            ease: "power3.out",
+            delay: index * stagger,
+          });
         }
       } else {
         gsap.to(selector, {
@@ -267,7 +274,14 @@ const ArchiveMosaic = ({
   };
 
   return (
-    <div ref={containerRef} className="list" style={{ height: maxHeight ? `${maxHeight}px` : undefined, minHeight: maxHeight ? `${maxHeight}px` : "400px" }}>
+    <div
+      ref={containerRef}
+      className="list"
+      style={{
+        height: maxHeight ? `${maxHeight}px` : undefined,
+        minHeight: maxHeight ? `${maxHeight}px` : "400px",
+      }}
+    >
       {grid.map((item) => {
         const alt = (item as unknown as { alt?: string }).alt as string | undefined;
         return (

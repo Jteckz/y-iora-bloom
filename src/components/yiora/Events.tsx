@@ -1,19 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import { ComingSoon } from "./ComingSoon";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-
-const EVENTS: {
-  title: string;
-  date: string;
-  place: string;
-  seats: string;
-  img: string;
-  blurb: string;
-}[] = [];
+import { useIsMobile } from "@/hooks/use-viewport";
+import { EVENTS } from "@/data/events";
 
 /** 3D coverflow carousel — swipe on touch, arrows and keyboard on desktop. */
 export function Events() {
@@ -22,14 +11,7 @@ export function Events() {
   const touchY = useRef<number | null>(null);
   const count = EVENTS.length;
   const stageRef = useRef<HTMLDivElement>(null);
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
+  const isMobile = useIsMobile();
 
   const go = useCallback((dir: number) => setIndex((i) => (i + dir + count) % count), [count]);
 
@@ -43,7 +25,14 @@ export function Events() {
     return () => node?.removeEventListener("keydown", onKey as EventListener);
   }, [go]);
 
-  if (count === 0) return <ComingSoon />;
+  // Events module owns the id="events" seam — empty branch delegates to ComingSoon (now id-less)
+  if (count === 0) {
+    return (
+      <div id="events" className="scroll-mt-20">
+        <ComingSoon />
+      </div>
+    );
+  }
 
   return (
     <section

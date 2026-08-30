@@ -1,4 +1,5 @@
 import { Reveal } from "./Reveal";
+import { Section } from "./Section";
 import ArchiveMosaic from "@/components/yiora/ArchiveMosaic";
 import g1 from "@/assets/gallery-1.jpg";
 import g2 from "@/assets/gallery-2.jpg";
@@ -48,36 +49,23 @@ export function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="scroll-mt-20 bg-background py-12 sm:py-16 relative overflow-hidden">
-      <div aria-hidden className="wavy-divider absolute top-0 inset-x-0 opacity-50" />
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <Reveal className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-5">
-          <div>
-            <p className="kicker">Archive</p>
-            <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,4.6vw,3.2rem)] leading-[0.97] font-[650] tracking-[-0.03em] text-cocoa text-balance">
-              The memories we
-              <span className="italic font-normal text-gradient-warm"> keep making</span>.
-            </h2>
-          </div>
-          <p className="max-w-[28ch] text-[0.9rem] leading-[1.6] text-cocoa/60">
-            Fragments from past gatherings. Every face here walked in as a stranger.
-          </p>
-        </Reveal>
-
-        <div className="mt-8">
-          <ArchiveMosaic
-            items={items}
-            ease="power3.out"
-            duration={0}
-            stagger={0}
-            animateFrom="bottom"
-            scaleOnHover={false}
-            hoverScale={1}
-            blurToFocus={false}
-            colorShiftOnHover={false}
-          />
+    <Section id="gallery" tone="background" divider="wavy" dividerPosition="top">
+      <Reveal className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-5">
+        <div>
+          <p className="kicker">Archive</p>
+          <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,4.6vw,3.2rem)] leading-[0.97] font-[650] tracking-[-0.03em] text-cocoa text-balance">
+            The memories we
+            <span className="italic font-normal text-gradient-warm"> keep making</span>.
+          </h2>
         </div>
+        <p className="max-w-[28ch] text-[0.9rem] leading-[1.6] text-cocoa/60">
+          Fragments from past gatherings. Every face here walked in as a stranger.
+        </p>
+      </Reveal>
+
+      <div className="mt-8">
+        <ArchiveMosaic items={items} variant="static" />
       </div>
-    </section>
+    </Section>
   );
 }
