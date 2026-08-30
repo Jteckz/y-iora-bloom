@@ -300,7 +300,7 @@ const ArchiveMosaic = ({
                 />
               )}
               {alt && (
-                <div className="masonry-caption absolute inset-x-0 bottom-0 bg-gradient-to-t from-cocoa/80 via-cocoa/40 to-transparent p-3 pt-8 opacity-0 transition-opacity duration-300 group-hover/masonry:opacity-100">
+                <div className="masonry-caption absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/75 via-ink/35 to-transparent p-3 pt-8 opacity-0 transition-opacity duration-300 group-hover/masonry:opacity-100">
                   <p className="text-[0.78rem] leading-snug text-white line-clamp-2">{alt}</p>
                 </div>
               )}
