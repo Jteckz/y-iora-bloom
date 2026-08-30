@@ -285,7 +285,8 @@ export function Nav() {
               transition={GLASS_SPRING}
               className="relative flex h-full flex-col items-center justify-center px-6"
             >
-              <ul className="flex flex-col items-center gap-2" role="list">
+              <p className="mb-6 font-mono text-[11px] tracking-[0.18em] uppercase text-cocoa/40">Navigate — Tanzania</p>
+              <ul className="flex flex-col items-center gap-1" role="list">
                 {LINKS.map((link, i) => {
                   const id = linkId(link.href);
                   return (

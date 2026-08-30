@@ -62,11 +62,6 @@ export function Hero() {
     >
       <PetalField />
 
-      {/* ghost watermark — soft signature */}
-      <div aria-hidden className="ghost-wordmark left-[-2%] top-[18%] hidden lg:block rotate-[-2deg]">
-        Y&apos;IORA
-      </div>
-
       {/* soft veil so text always clears contrast over the shifting gradient */}
       <div
         aria-hidden
@@ -151,7 +146,7 @@ export function Hero() {
                 className="w-full max-w-[380px] object-cover aspect-[4/5]"
               />
             </div>
-            <div aria-hidden className="absolute -z-10 -inset-4 bg-linen/60 -rotate-[1.2deg]" style={{ borderRadius: "58% 42% 48% 52% / 44% 52% 48% 56%", filter: "blur(8px)" }} />
+            <div aria-hidden className="absolute -z-10 -inset-4 bg-linen/60 -rotate-[1.2deg] hidden sm:block" style={{ borderRadius: "58% 42% 48% 52% / 44% 52% 48% 56%", filter: "blur(8px)" }} />
           </div>
         </div>
       </div>

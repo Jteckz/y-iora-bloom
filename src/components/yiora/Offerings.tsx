@@ -69,7 +69,7 @@ export function Offerings() {
               <div
                 role="tablist"
                 aria-label="Offering categories"
-                className="flex gap-2.5 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x"
+                className="flex gap-2.5 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x snap-mandatory scroll-pl-4"
               >
                 {OFFERINGS.map((o, i) => {
                   const isActive = i === active;
@@ -83,7 +83,7 @@ export function Offerings() {
                       onClick={() => setActive(i)}
                       data-cursor="grow"
                       className={cn(
-                        "pressable flex-shrink-0 min-h-[40px] items-center rounded-full font-display font-semibold tracking-[-0.01em] transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out touch-target px-5 py-2.5 text-[0.95rem] border",
+                        "pressable flex-shrink-0 snap-start min-h-[40px] items-center rounded-full font-display font-semibold tracking-[-0.01em] transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out touch-target px-5 py-2.5 text-[0.95rem] border",
                         isActive
                           ? "text-background shadow-soft border-transparent"
                           : "text-cocoa bg-background/60 border-cocoa/10 hover:border-cocoa/20 hover:bg-background",
@@ -163,10 +163,9 @@ export function Offerings() {
               role="tabpanel"
               id={`panel-${current.key}`}
               aria-labelledby={`tab-${current.key}`}
-              className="relative overflow-hidden rounded-[1.5rem] border border-cocoa/10 bg-card p-6 shadow-soft sm:p-7"
+              className="rounded-[1.5rem] border border-cocoa/10 bg-card p-6 shadow-soft sm:p-7"
               style={{ animation: "bloom 420ms var(--ease-out)" }}
             >
-              <span aria-hidden className="absolute -right-6 -top-6 font-display text-[6rem] leading-none text-cocoa/[0.04] select-none">{`0${active + 1}`}</span>
               <span
                 className="inline-block h-1.5 w-12 rounded-full"
                 style={{ background: current.tint }}
@@ -185,10 +184,6 @@ export function Offerings() {
                   </li>
                 ))}
               </ul>
-              <div className="mt-6 flex items-center gap-2 text-xs font-medium text-cocoa/45">
-                <span className="h-px flex-1 bg-cocoa/10" />
-                <span>0{active + 1} / 04</span>
-              </div>
             </div>
           </div>
         </div>

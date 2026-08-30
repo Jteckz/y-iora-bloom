@@ -96,7 +96,7 @@ const ArchiveMosaic = ({
   const columns = useMedia(
     ["(min-width:1500px)", "(min-width:1000px)", "(min-width:600px)", "(min-width:400px)"],
     [4, 3, 3, 2],
-    1,
+    2,
   );
 
   const [containerRef, { width }] = useMeasure();

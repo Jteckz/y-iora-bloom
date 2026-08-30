@@ -73,7 +73,7 @@ export function About() {
                   <span className="h-[9px] w-[9px] rounded-full bg-cocoa ring-4 ring-blush transition-[transform,background-color] duration-200 ease-out group-hover:scale-125 group-hover:bg-berry flex-shrink-0" />
                 </div>
                 <div
-                  className="min-w-0 rounded-2xl border border-transparent bg-transparent p-5 sm:p-6 transition-[transform,box-shadow,border-color,background-color] duration-200 ease-out group-hover:border-cocoa/10 group-hover:bg-card group-hover:shadow-soft group-hover:-translate-y-0.5 hover:border-cocoa/10 hover:bg-card hover:shadow-soft hover:-translate-y-0.5"
+                  className="min-w-0 rounded-2xl border border-cocoa/10 bg-card p-5 sm:p-6 shadow-soft transition-[transform,box-shadow,border-color,background-color] duration-200 ease-out lg:border-transparent lg:bg-transparent lg:shadow-none lg:group-hover:border-cocoa/10 lg:group-hover:bg-card lg:group-hover:shadow-soft lg:group-hover:-translate-y-0.5"
                 >
                   <p className="text-[0.68rem] tracking-[0.18em] uppercase font-semibold text-clay/80">{item.year}</p>
                   <h3 className="mt-2 font-display text-[1.18rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.32rem]">
