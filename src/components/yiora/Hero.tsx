@@ -62,6 +62,11 @@ export function Hero() {
     >
       <PetalField />
 
+      {/* ghost watermark — soft signature */}
+      <div aria-hidden className="ghost-wordmark left-[-2%] top-[18%] hidden lg:block rotate-[-2deg]">
+        Y&apos;IORA
+      </div>
+
       {/* soft veil so text always clears contrast over the shifting gradient */}
       <div
         aria-hidden
@@ -85,11 +90,11 @@ export function Hero() {
             </span>
           </p>
 
-          <h1 className="font-display text-[clamp(2.4rem,8.5vw,5rem)] leading-[0.95] font-[650] tracking-[-0.03em] text-cocoa text-balance">
+          <h1 className="font-display text-[clamp(2.6rem,9vw,5.6rem)] leading-[0.88] font-[650] tracking-[-0.05em] text-cocoa text-balance">
             Life is not
             <br />
-            <span className="font-light tracking-[-0.04em]">about existing.</span>
-            <span className="mt-1 block font-display text-gradient-warm italic font-normal tracking-[-0.02em]">It&apos;s about blooming.</span>
+            <span className="font-light tracking-[-0.05em]">about existing.</span>
+            <span className="mt-1 block font-display text-gradient-warm italic font-normal tracking-[-0.03em]">It&apos;s about blooming.</span>
           </h1>
 
           <p className="mt-5 max-w-[46ch] text-[0.95rem] leading-[1.7] text-cocoa/70 sm:text-[1.02rem]">
@@ -134,21 +139,23 @@ export function Hero() {
         </div>
 
         <div className="col-span-12 flex justify-center lg:col-span-5 lg:justify-end">
-          <div className="relative w-full max-w-[360px]">
-            <img
-              src={mark}
-              alt="Y'IORA emblem: a serene crowned face"
-              width={953}
-              height={1261}
-              fetchPriority="high"
-              decoding="async"
-              className="w-full max-w-[340px] rounded-[1.5rem] border border-cocoa/10 bg-background shadow-soft object-cover aspect-[3/4]"
-              style={{ animation: reduced ? undefined : "float-soft 14s var(--ease-silk) infinite" }}
-            />
+          <div className="relative w-full max-w-[380px] lg:-ml-8">
+            <div className="bloom-mask overflow-hidden border border-cocoa/10 bg-background shadow-lift rotate-[-0.8deg]" style={{ animation: reduced ? undefined : "float-soft 14s var(--ease-silk) infinite" }}>
+              <img
+                src={mark}
+                alt="Y'IORA emblem: a serene crowned face"
+                width={953}
+                height={1261}
+                fetchPriority="high"
+                decoding="async"
+                className="w-full max-w-[380px] object-cover aspect-[4/5]"
+              />
+            </div>
+            <div aria-hidden className="absolute -z-10 -inset-4 bg-linen/60 -rotate-[1.2deg]" style={{ borderRadius: "58% 42% 48% 52% / 44% 52% 48% 56%", filter: "blur(8px)" }} />
           </div>
         </div>
       </div>
-
+      <div aria-hidden className="wavy-divider absolute bottom-0 inset-x-0" />
     </section>
   );
 }

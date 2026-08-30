@@ -33,7 +33,7 @@ const VOICES = [
 export function Testimonials() {
   return (
     <section id="voices" className="relative scroll-mt-20 overflow-hidden bg-linen py-12 sm:py-16">
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cocoa/8 to-transparent" />
+      <div aria-hidden className="wavy-divider absolute top-0 inset-x-0 opacity-60" />
       <div
         aria-hidden
         className="pointer-events-none absolute -right-32 top-10 h-[420px] w-[420px] rounded-full bg-petal/25 blur-[70px]"

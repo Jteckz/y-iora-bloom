@@ -156,29 +156,30 @@ export function Offerings() {
             )}
           </Reveal>
 
-          {/* Panel — tactile paper, not bloom pop */}
+          {/* Panel — tactile paper, bolder */}
           <div className="lg:col-span-6">
             <div
               key={current.key}
               role="tabpanel"
               id={`panel-${current.key}`}
               aria-labelledby={`tab-${current.key}`}
-              className="rounded-[1.5rem] border border-cocoa/10 bg-card p-6 shadow-soft sm:p-7"
+              className="relative overflow-hidden rounded-[1.5rem] border border-cocoa/10 bg-card p-6 shadow-soft sm:p-7"
               style={{ animation: "bloom 420ms var(--ease-out)" }}
             >
+              <span aria-hidden className="absolute -right-6 -top-6 font-display text-[6rem] leading-none text-cocoa/[0.04] select-none">{`0${active + 1}`}</span>
               <span
                 className="inline-block h-1.5 w-12 rounded-full"
                 style={{ background: current.tint }}
               />
-              <h3 className="mt-4 font-display text-[1.6rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.8rem]">
+              <h3 className="mt-4 font-display text-[1.7rem] font-semibold tracking-[-0.03em] text-cocoa sm:text-[1.9rem]">
                 {current.label}
               </h3>
-              <p className="mt-3 text-[0.94rem] leading-[1.65] text-cocoa/65">{current.body}</p>
+              <p className="mt-3 text-[0.95rem] leading-[1.65] text-cocoa/65 max-w-[42ch]">{current.body}</p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {current.detail.map((d) => (
                   <li
                     key={d}
-                    className="rounded-full border border-cocoa/10 bg-background px-3.5 py-1.5 text-[0.82rem] font-medium text-cocoa/70"
+                    className="rounded-full border border-cocoa/10 bg-background px-3.5 py-1.5 text-[0.82rem] font-medium text-cocoa/70 hover:border-cocoa/20 hover:bg-blush transition-colors"
                   >
                     {d}
                   </li>

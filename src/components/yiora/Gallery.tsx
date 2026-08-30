@@ -48,7 +48,8 @@ export function Gallery() {
   ];
 
   return (
-    <section id="gallery" className="scroll-mt-20 bg-background py-12 sm:py-16">
+    <section id="gallery" className="scroll-mt-20 bg-background py-12 sm:py-16 relative overflow-hidden">
+      <div aria-hidden className="wavy-divider absolute top-0 inset-x-0 opacity-50" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-5">
           <div>

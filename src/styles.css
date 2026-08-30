@@ -461,6 +461,27 @@
   color: color-mix(in oklab, var(--rose) 88%, var(--cocoa));
 }
 
+@utility bloom-mask {
+  border-radius: 58% 42% 48% 52% / 44% 52% 48% 56%;
+}
+
+@utility wavy-divider {
+  height: 14px;
+  background: url("data:image/svg+xml,%3Csvg width='1440' height='14' viewBox='0 0 1440 14' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 7 Q 90 0 180 7 T 360 7 T 540 7 T 720 7 T 900 7 T1080 7 T1260 7 T1440 7' fill='none' stroke='%23ECD8CD' stroke-width='1.2' opacity='0.9'/%3E%3C/svg%3E") repeat-x;
+  opacity: 0.7;
+}
+
+@utility ghost-wordmark {
+  position: absolute;
+  font-family: var(--font-display);
+  font-size: clamp(6rem, 18vw, 14rem);
+  line-height: 1;
+  letter-spacing: -0.06em;
+  color: color-mix(in oklab, var(--cocoa) 6%, transparent);
+  pointer-events: none;
+  user-select: none;
+}
+
 @utility hairline {
   height: 1px;
   background: linear-gradient(90deg, transparent, color-mix(in oklab, var(--border) 80%, transparent), transparent);
