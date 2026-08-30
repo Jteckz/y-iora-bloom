@@ -32,61 +32,58 @@ export function About() {
     >
       <div
         aria-hidden
-        className="blob absolute -top-24 -left-40 h-[420px] w-[420px] bg-blush opacity-70 blur-3xl sm:-top-32 sm:-left-48"
+        className="pointer-events-none absolute -top-24 -left-40 h-[520px] w-[520px] rounded-full bg-blush/40 blur-[80px] sm:-top-32 sm:-left-48"
       />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-10">
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-12">
           <Reveal className="lg:col-span-5 lg:sticky lg:top-28 lg:self-start">
-            <p className="text-xs tracking-[0.28em] uppercase text-rose">Our story</p>
-            <h2 className="mt-4 font-display text-[clamp(2rem,5vw,3.6rem)] leading-[1.02] font-bold text-cocoa text-balance">
+            <p className="kicker">Our story</p>
+            <h2 className="mt-4 font-display text-[clamp(2rem,4.8vw,3.4rem)] leading-[0.98] font-[650] tracking-[-0.03em] text-cocoa text-balance">
               We believe life is
-              <span className="italic text-gradient-warm"> better witnessed</span> together.
+              <span className="italic font-normal text-gradient-warm"> better witnessed</span> together.
             </h2>
-            <p className="mt-5 max-w-md text-foreground/75 sm:text-base">
+            <p className="mt-5 max-w-[36ch] text-[0.94rem] leading-[1.7] text-cocoa/65">
               Y&apos;IORA is a lifestyle organisation curating events dedicated to fun, affordable
               and meaningful experiences that bring people together — connecting, building
               friendships, staying active, and creating unforgettable memories.
             </p>
 
             <div className="relative mt-8 w-full max-w-[340px]">
-              <div aria-hidden className="blob absolute -inset-4 bg-linen" />
               <img
                 src={duo}
                 alt="Women from the Y'IORA community laughing and embracing"
                 loading="lazy"
                 width={1275}
                 height={1452}
-                className="relative w-full aspect-[7:8] object-cover mix-blend-multiply rounded-[1.5rem]"
+                className="w-full aspect-[4/5] object-cover rounded-[1.5rem] border border-cocoa/10 shadow-soft"
               />
-              <span className="absolute -right-2 bottom-6 rotate-[-6deg] rounded-full bg-honey px-3 py-1.5 font-display text-sm font-bold text-cocoa shadow-petal whitespace-nowrap">
-                since day one
+              <span className="absolute -right-2 bottom-6 rotate-[-2deg] rounded-full bg-honey px-3 py-1.5 font-display text-[0.78rem] font-semibold tracking-wide text-cocoa shadow-soft border border-honey/20 whitespace-nowrap">
+                Since 2026
               </span>
+              <span className="absolute -left-3 top-6 hidden sm:block rounded-full bg-background px-3 py-1.5 text-xs font-medium text-cocoa/70 shadow-soft border border-cocoa/10">Tanzania</span>
             </div>
           </Reveal>
 
-          <ol className="lg:col-span-7 space-y-6 lg:pt-8">
+          <ol className="lg:col-span-7 space-y-4 lg:pt-2">
             {TIMELINE.map((item, i) => (
               <Reveal
                 as="li"
                 key={item.title}
-                delay={i * 90}
-                className="group relative grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 pb-8 last:pb-0 sm:gap-x-6 sm:pb-10"
+                delay={i * 70}
+                className="group relative grid grid-cols-[auto_minmax(0,1fr)] gap-x-4 sm:gap-x-5"
               >
-                <div className="flex flex-col items-center pt-2">
-                  <span className="h-3.5 w-3.5 rounded-full bg-rose ring-4 ring-blush transition-all duration-500 group-hover:scale-125 group-hover:bg-berry flex-shrink-0" />
-                  <span className="mt-2 w-px flex-1 bg-gradient-to-b from-petal to-transparent min-h-[40px]" />
+                <div className="flex flex-col items-center pt-5">
+                  <span className="h-[9px] w-[9px] rounded-full bg-cocoa ring-4 ring-blush transition-[transform,background-color] duration-200 ease-out group-hover:scale-125 group-hover:bg-berry flex-shrink-0" />
                 </div>
                 <div
-                  className={`hover-lift min-w-0 rounded-2xl border border-border/70 bg-card p-4 sm:p-6 ${
-                    i % 2 === 1 ? "lg:ml-6" : ""
-                  }`}
+                  className="min-w-0 rounded-2xl border border-transparent bg-transparent p-5 sm:p-6 transition-[transform,box-shadow,border-color,background-color] duration-200 ease-out group-hover:border-cocoa/10 group-hover:bg-card group-hover:shadow-soft group-hover:-translate-y-0.5 hover:border-cocoa/10 hover:bg-card hover:shadow-soft hover:-translate-y-0.5"
                 >
-                  <p className="text-xs tracking-[0.22em] uppercase text-clay">{item.year}</p>
-                  <h3 className="mt-1 font-display text-lg font-bold text-cocoa sm:text-xl">
+                  <p className="text-[0.68rem] tracking-[0.18em] uppercase font-semibold text-clay/80">{item.year}</p>
+                  <h3 className="mt-2 font-display text-[1.18rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.32rem]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/75 sm:text-base">
+                  <p className="mt-2.5 max-w-[48ch] text-[0.92rem] leading-[1.65] text-cocoa/65">
                     {item.body}
                   </p>
                 </div>

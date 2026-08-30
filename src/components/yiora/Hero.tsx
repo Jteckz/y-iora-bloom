@@ -65,68 +65,84 @@ export function Hero() {
       {/* soft veil so text always clears contrast over the shifting gradient */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-background/35 via-background/10 to-background"
+        className="absolute inset-0 bg-gradient-to-b from-background/28 via-background/8 to-background"
+      />
+      {/* subtle paper grain — tactile, not glassy */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.04] mix-blend-multiply"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E")`,
+        }}
       />
 
       <div className="relative mx-auto grid min-h-[100svh] max-w-6xl grid-cols-12 items-start gap-6 px-4 pt-20 pb-12 sm:px-6 sm:pt-24 sm:pb-16 lg:items-center lg:pb-20 lg:px-8">
         <div className="col-span-12 lg:col-span-7">
-          <p className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose/30 bg-background/60 px-3 py-1 text-xs tracking-[0.22em] uppercase text-rose backdrop-blur touch-target-sm">
-            <span className="h-1.5 w-1.5 rounded-full bg-honey flex-shrink-0" />
+          <p className="mb-5 inline-flex items-center gap-2.5 text-[0.68rem] tracking-[0.22em] uppercase text-cocoa/70">
             {greeting}
+            <span className="hidden sm:inline-flex items-center gap-1.5 rounded-full border border-cocoa/15 bg-background/70 px-2.5 py-1 text-[0.62rem] tracking-[0.16em] backdrop-blur-sm">
+              <span className="h-1.5 w-1.5 rounded-full bg-honey flex-shrink-0" /> Tanzania
+            </span>
           </p>
 
-          <h1 className="font-display text-[clamp(2.2rem,10vw,5.5rem)] leading-[1.0] font-bold tracking-[-0.02em] text-cocoa text-balance">
-            Life is not <br />
-            about existing.
-            <span className="block text-gradient-warm italic">It&apos;s about blooming.</span>
+          <h1 className="font-display text-[clamp(2.4rem,8.5vw,5rem)] leading-[0.95] font-[650] tracking-[-0.03em] text-cocoa text-balance">
+            Life is not
+            <br />
+            <span className="font-light tracking-[-0.04em]">about existing.</span>
+            <span className="mt-1 block font-display text-gradient-warm italic font-normal tracking-[-0.02em]">It&apos;s about blooming.</span>
           </h1>
 
-          <p className="mt-5 max-w-lg text-sm leading-relaxed text-foreground/80 sm:text-base">
+          <p className="mt-5 max-w-[46ch] text-[0.95rem] leading-[1.7] text-cocoa/70 sm:text-[1.02rem]">
             Y&apos;IORA curates lifestyle events for women who want more than a calendar invite —
-            rooms full of warmth, friendships that outlive the night, and experiences made to be
+            <em className="font-display italic text-cocoa">rooms full of warmth</em>, friendships that outlive the night, and experiences made to be
             remembered.
           </p>
 
           <div className="mt-7 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
             <a
               href="#events"
-              className="group inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-cocoa px-6 py-3 font-medium text-background shadow-lift transition-all duration-500 hover:bg-berry touch-target"
+              className="pressable group inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-cocoa px-7 py-3 text-[0.94rem] font-[550] tracking-[-0.01em] text-background shadow-soft transition-[transform,background-color,box-shadow] duration-200 ease-out hover:bg-berry hover:shadow-lift active:scale-[0.97] touch-target"
             >
               See what&apos;s coming
-              <span className="transition-transform duration-500 group-hover:translate-x-1">
+              <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">
                 &rarr;
               </span>
             </a>
             <a
               href="#about"
-              className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-cocoa/25 px-6 py-3 font-medium text-cocoa transition-all duration-500 hover:border-cocoa/60 hover:bg-background/60 touch-target"
+              className="pressable inline-flex min-h-[48px] items-center justify-center rounded-full border border-cocoa/20 bg-background/50 px-6 py-3 text-[0.94rem] font-[550] text-cocoa backdrop-blur-sm transition-[transform,border-color,background-color] duration-200 ease-out hover:border-cocoa/35 hover:bg-background/80 active:scale-[0.97] touch-target"
             >
               Our story
             </a>
           </div>
 
-          <dl className="mt-10 flex flex-wrap gap-x-6 gap-y-4 sm:gap-x-8" role="list">
+          <dl className="mt-10 flex gap-0 divide-x divide-cocoa/10 border-y border-cocoa/10 py-5" role="list">
             {[
               ["Founded", "2026"],
               ["Gatherings", "Monthly"],
               ["Women connected", "600+"],
             ].map(([k, v]) => (
-              <div key={k} className="min-w-0 flex-1 min-w-[120px]">
-                <dt className="text-[0.65rem] tracking-[0.2em] uppercase text-foreground/55">
+              <div key={k} className="flex-1 px-4 first:pl-0 last:pr-0 sm:px-6">
+                <dt className="text-[0.62rem] tracking-[0.18em] uppercase text-cocoa/50 font-medium">
                   {k}
                 </dt>
-                <dd className="font-display text-xl font-bold text-cocoa sm:text-2xl">{v}</dd>
+                <dd className="mt-1 font-display text-[1.35rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.5rem]">{v}</dd>
               </div>
             ))}
           </dl>
+          <p className="mt-3 text-[0.72rem] leading-relaxed text-cocoa/45">Small rooms, on purpose — every seat is curated.</p>
         </div>
 
         <div className="col-span-12 flex justify-center lg:col-span-5 lg:justify-end">
-          <div className="relative w-full max-w-[340px]">
+          <div className="relative w-full max-w-[360px]">
+            {/* tactile paper mat behind art — not a frosted blob */}
             <div
               aria-hidden
-              className="blob absolute -inset-6 bg-background/45 backdrop-blur-md"
-              style={{ animation: "float-soft 12s ease-in-out infinite" }}
+              className="absolute -inset-3 rounded-[2rem] bg-linen border border-cocoa/8 shadow-soft rotate-[1.2deg]"
+            />
+            <div
+              aria-hidden
+              className="absolute -inset-3 rounded-[2rem] bg-background border border-border/60 shadow-[0_2px_10px_rgba(58,44,44,0.06)] rotate-[-0.6deg]"
             />
             <img
               src={mark}
@@ -135,19 +151,16 @@ export function Hero() {
               height={1261}
               fetchPriority="high"
               decoding="async"
-              className="animate-float-soft relative w-full max-w-[340px] drop-shadow-[0_30px_50px_rgba(58,44,44,0.25)]"
+              className="relative w-full max-w-[340px] rounded-[1.75rem] border border-cocoa/10 bg-background shadow-soft object-cover aspect-[3/4]"
+              style={{ animation: reduced ? undefined : "float-soft 14s var(--ease-silk) infinite" }}
             />
+            <span className="absolute -bottom-2 -right-2 rotate-[-3deg] rounded-full bg-honey px-3 py-1.5 font-display text-xs font-semibold tracking-wide text-cocoa shadow-soft border border-honey/30">
+              Since 2026 · Tanzania
+            </span>
           </div>
         </div>
       </div>
 
-      <div
-        aria-hidden
-        className="absolute bottom-6 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 lg:flex"
-      >
-        <span className="text-[0.65rem] tracking-[0.3em] uppercase text-foreground/50">scroll</span>
-        <span className="h-12 w-px bg-gradient-to-b from-rose to-transparent" />
-      </div>
     </section>
   );
 }

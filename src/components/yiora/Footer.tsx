@@ -12,9 +12,11 @@ export function Footer() {
   return (
     <footer
       id="join"
-      className="relative isolate scroll-mt-20 overflow-hidden bg-gradient-to-b from-blush via-petal/60 to-linen pt-16 pb-8 sm:pt-24 sm:pb-10"
+      className="relative isolate scroll-mt-20 overflow-hidden bg-blush pt-16 pb-8 sm:pt-24 sm:pb-10"
     >
-      <PetalField density={0.6} />
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cocoa/10 to-transparent" />
+      <div aria-hidden className="absolute inset-0 bg-gradient-to-b from-background/0 via-transparent to-linen/60" />
+      <PetalField density={0.35} />
 
       <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal className="mx-auto max-w-2xl text-center">
@@ -23,12 +25,12 @@ export function Footer() {
             alt=""
             width={953}
             height={1261}
-            className="mx-auto h-14 w-auto rounded-full object-cover sm:h-16"
+            className="mx-auto h-14 w-auto rounded-full object-cover border border-cocoa/10 shadow-soft sm:h-[52px]"
           />
-          <h2 className="mt-5 font-display text-[clamp(2rem,5.5vw,3.8rem)] leading-[1.02] font-bold text-cocoa text-balance">
-            Plant yourself in the garden.
+          <h2 className="mt-5 font-display text-[clamp(2rem,4.8vw,3.4rem)] leading-[0.98] font-[650] tracking-[-0.03em] text-cocoa text-balance">
+            Plant yourself <span className="italic font-normal text-cocoa/60">in the garden.</span>
           </h2>
-          <p className="mt-3 text-sm text-foreground/78 sm:text-base">
+          <p className="mt-3 text-[0.94rem] leading-relaxed text-cocoa/60">
             One warm letter a month: what&apos;s coming, who&apos;s hosting, and early seats before
             they go public.
           </p>
@@ -54,24 +56,25 @@ export function Footer() {
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="you@yourname.com"
-                className="min-h-[48px] flex-1 rounded-full border border-cocoa/20 bg-background/85 px-6 text-foreground placeholder:text-muted-foreground touch-target"
+                className="min-h-[48px] flex-1 rounded-full border border-cocoa/15 bg-background px-6 text-[0.94rem] text-foreground placeholder:text-cocoa/40 shadow-soft focus:border-rose focus:ring-2 focus:ring-rose/15 focus:outline-none transition-[border-color,box-shadow] duration-200 ease-out touch-target"
               />
               <button
                 type="submit"
-                className="min-h-[48px] rounded-full bg-cocoa px-6 font-medium text-background shadow-lift transition-colors hover:bg-berry touch-target whitespace-nowrap"
+                className="pressable min-h-[48px] rounded-full bg-cocoa px-7 text-[0.94rem] font-[600] tracking-[-0.01em] text-background shadow-soft transition-[transform,background-color,box-shadow] duration-200 ease-out hover:bg-berry hover:shadow-lift active:scale-[0.97] touch-target whitespace-nowrap"
               >
                 Join us
               </button>
             </div>
+            <p className="text-xs text-cocoa/40">No spam. Unsubscribe anytime. We write like humans.</p>
           </form>
         </Reveal>
 
-        {/* Community garden — each bloom is a woman in the circle */}
-        <div className="mt-16 flex flex-wrap items-end justify-center gap-x-4 gap-y-8">
+        {/* Community garden — quieter, less toy-like */}
+        <div className="mt-14 flex flex-wrap items-end justify-center gap-x-5 gap-y-8 border-y border-cocoa/8 py-8">
           {FLOWERS.map((f, i) => (
             <div key={f} className="group flex flex-col items-center" data-cursor="grow">
               <span
-                className="mb-1.5 block h-3.5 w-3.5 rounded-full transition-all duration-700 group-hover:scale-[1.6]"
+                className="mb-1.5 block h-2.5 w-2.5 rounded-full border border-white/40 shadow-sm transition-transform duration-300 ease-out group-hover:scale-125"
                 style={{
                   background: [
                     "var(--rose)",
@@ -80,35 +83,34 @@ export function Footer() {
                     "var(--clay)",
                     "var(--olive)",
                   ][i % 5],
-                  animation: `float-soft ${7 + (i % 5)}s ease-in-out ${i * 0.4}s infinite`,
                 }}
               />
               <span
                 aria-hidden
-                className="block w-px bg-olive/50 transition-all duration-700 group-hover:bg-olive"
-                style={{ height: 20 + ((i * 11) % 36) }}
+                className="block w-px bg-cocoa/15 transition-colors duration-300 group-hover:bg-cocoa/25"
+                style={{ height: 18 + ((i * 11) % 28) }}
               />
-              <span className="mt-1.5 font-display text-xs text-cocoa/80 whitespace-nowrap">
+              <span className="mt-2 font-display text-[0.68rem] tracking-wide text-cocoa/55 whitespace-nowrap">
                 {f}
               </span>
             </div>
           ))}
         </div>
 
-        <div className="mt-16 flex flex-col items-center gap-4 border-t border-cocoa/12 pt-6 text-center text-sm text-cocoa/75 sm:flex-row sm:justify-between sm:text-left">
-          <p className="font-display tracking-[0.2em] text-xs">Y&apos;IORA &mdash; est. 2026</p>
-          <nav aria-label="Social" className="flex items-center gap-2 flex-wrap justify-center">
+        <div className="mt-8 flex flex-col items-center gap-4 text-center text-sm text-cocoa/60 sm:flex-row sm:justify-between sm:text-left">
+          <p className="font-display text-[0.72rem] tracking-[0.16em] font-semibold text-cocoa">Y&apos;IORA &mdash; EST. 2026 · NAIROBI</p>
+          <nav aria-label="Social" className="flex items-center gap-1.5 flex-wrap justify-center">
             {["Instagram", "TikTok", "WhatsApp"].map((s) => (
               <a
                 key={s}
                 href="#join"
-                className="inline-flex min-h-[44px] items-center rounded-full px-3 py-2 transition-colors hover:bg-background/60 hover:text-berry touch-target-sm text-xs"
+                className="inline-flex min-h-[36px] items-center rounded-full border border-transparent px-3 py-1.5 text-[0.78rem] font-medium tracking-wide transition-[border-color,background-color,color] duration-200 ease-out hover:border-cocoa/10 hover:bg-background hover:text-cocoa"
               >
                 {s}
               </a>
             ))}
           </nav>
-          <p className="text-xs">Curated events for women who want more.</p>
+          <p className="text-xs text-cocoa/45">Curated events for women who want more.</p>
         </div>
       </div>
     </footer>

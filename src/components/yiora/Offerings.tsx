@@ -51,23 +51,25 @@ export function Offerings() {
       id="offerings"
       className="relative scroll-mt-20 overflow-hidden bg-blush py-16 sm:py-24"
     >
+      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cocoa/10 to-transparent" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
-          <p className="text-xs tracking-[0.28em] uppercase text-rose">What we offer</p>
-          <h2 className="mt-4 font-display text-[clamp(2rem,5vw,3.6rem)] leading-[1.03] font-bold text-cocoa text-balance">
-            Four circles. One community.
+          <p className="kicker">What we offer</p>
+          <h2 className="mt-4 font-display text-[clamp(2rem,4.8vw,3.3rem)] leading-[0.97] font-[650] tracking-[-0.03em] text-cocoa text-balance">
+            Four circles. <span className="italic font-normal text-cocoa/55">One community.</span>
           </h2>
+          <p className="mt-4 max-w-[46ch] text-[0.92rem] leading-[1.6] text-cocoa/60">Pick a circle. The rest finds you — suppers, sunrises, studios and salons.</p>
         </Reveal>
 
         <div className="mt-10 grid grid-cols-1 gap-8 lg:grid-cols-12 lg:items-start lg:gap-10">
           {/* Interactive circles */}
           <Reveal className="lg:col-span-6">
             {isMobile ? (
-              // Mobile: Horizontal scrollable tabs
+              // Mobile: Horizontal scrollable tabs — editorial pills, not candy
               <div
                 role="tablist"
                 aria-label="Offering categories"
-                className="flex gap-3 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x"
+                className="flex gap-2.5 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x"
               >
                 {OFFERINGS.map((o, i) => {
                   const isActive = i === active;
@@ -81,24 +83,24 @@ export function Offerings() {
                       onClick={() => setActive(i)}
                       data-cursor="grow"
                       className={cn(
-                        "flex-shrink-0 min-h-[48px] items-center rounded-full font-display font-bold transition-all duration-500 touch-target px-6 py-3",
+                        "pressable flex-shrink-0 min-h-[40px] items-center rounded-full font-display font-semibold tracking-[-0.01em] transition-[transform,background-color,border-color,color,box-shadow] duration-200 ease-out touch-target px-5 py-2.5 text-[0.95rem] border",
                         isActive
-                          ? "text-background shadow-lift"
-                          : "text-cocoa shadow-petal hover:scale-105",
+                          ? "text-background shadow-soft border-transparent"
+                          : "text-cocoa bg-background/60 border-cocoa/10 hover:border-cocoa/20 hover:bg-background",
                       )}
                       style={{
                         background: isActive
-                          ? `color-mix(in oklab, ${o.tint} 88%, var(--cocoa))`
-                          : `color-mix(in oklab, ${o.tint} 30%, var(--background))`,
+                          ? `color-mix(in oklab, ${o.tint} 78%, var(--cocoa))`
+                          : undefined,
                       }}
                     >
-                      <span className="text-base tracking-wide whitespace-nowrap">{o.label}</span>
+                      <span className="whitespace-nowrap">{o.label}</span>
                     </button>
                   );
                 })}
               </div>
             ) : (
-              // Desktop: Circular layout
+              // Desktop: Circular layout — more human, less perfect geometry
               <div
                 role="tablist"
                 aria-label="Offering categories"
@@ -106,11 +108,12 @@ export function Offerings() {
               >
                 <div
                   aria-hidden
-                  className="absolute inset-6 rounded-full border border-dashed border-rose/35"
+                  className="absolute inset-8 rounded-full border border-dashed border-cocoa/15"
                 />
+                <div aria-hidden className="absolute inset-[22%] rounded-full bg-background/55 border border-cocoa/8" />
                 {OFFERINGS.map((o, i) => {
                   const angle = (i / OFFERINGS.length) * Math.PI * 2 - Math.PI / 2;
-                  const r = 38;
+                  const r = 37;
                   const isActive = i === active;
                   return (
                     <button
@@ -123,21 +126,21 @@ export function Offerings() {
                       onMouseEnter={() => setActive(i)}
                       data-cursor="grow"
                       className={cn(
-                        "absolute grid aspect-square place-items-center rounded-full font-display font-bold transition-all duration-700 [transition-timing-function:var(--ease-silk)] touch-target",
+                        "pressable absolute grid aspect-square place-items-center rounded-full font-display font-semibold tracking-[-0.01em] transition-[transform,background-color,box-shadow,border-color] duration-300 ease-out touch-target border",
                         isActive
-                          ? "w-[42%] text-background shadow-lift"
-                          : "w-[30%] text-cocoa shadow-petal hover:scale-105",
+                          ? "w-[40%] text-background shadow-lift border-transparent scale-[1.02]"
+                          : "w-[29%] text-cocoa bg-background/70 border-cocoa/10 shadow-soft hover:scale-[1.03] hover:border-cocoa/15",
                       )}
                       style={{
                         left: `${50 + Math.cos(angle) * r}%`,
                         top: `${50 + Math.sin(angle) * r}%`,
                         transform: "translate(-50%, -50%)",
                         background: isActive
-                          ? `color-mix(in oklab, ${o.tint} 88%, var(--cocoa))`
-                          : `color-mix(in oklab, ${o.tint} 30%, var(--background))`,
+                          ? `color-mix(in oklab, ${o.tint} 78%, var(--cocoa))`
+                          : undefined,
                       }}
                     >
-                      <span className="text-[clamp(0.9rem,2.4vw,1.35rem)] tracking-wide">
+                      <span className="text-[clamp(0.92rem,2.2vw,1.2rem)]">
                         {o.label}
                       </span>
                     </button>
@@ -145,7 +148,7 @@ export function Offerings() {
                 })}
                 <div
                   aria-hidden
-                  className="pointer-events-none grid h-[26%] w-[26%] place-items-center rounded-full bg-background/80 text-center font-display text-sm font-bold text-rose backdrop-blur"
+                  className="pointer-events-none grid h-[22%] w-[22%] place-items-center rounded-full bg-background text-center font-display text-[0.72rem] font-semibold tracking-[0.16em] text-cocoa/60 border border-cocoa/10 shadow-soft"
                 >
                   Y&apos;IORA
                 </div>
@@ -153,34 +156,38 @@ export function Offerings() {
             )}
           </Reveal>
 
-          {/* Panel */}
+          {/* Panel — tactile paper, not bloom pop */}
           <div className="lg:col-span-6">
             <div
               key={current.key}
               role="tabpanel"
               id={`panel-${current.key}`}
               aria-labelledby={`tab-${current.key}`}
-              className="rounded-[1.5rem] border border-border bg-background p-6 shadow-soft sm:p-8"
-              style={{ animation: "bloom .6s var(--ease-silk)" }}
+              className="rounded-[1.5rem] border border-cocoa/10 bg-card p-6 shadow-soft sm:p-7"
+              style={{ animation: "bloom 420ms var(--ease-out)" }}
             >
               <span
-                className="inline-block h-2 w-14 rounded-full"
+                className="inline-block h-1.5 w-12 rounded-full"
                 style={{ background: current.tint }}
               />
-              <h3 className="mt-5 font-display text-2xl font-bold text-cocoa sm:text-3xl">
+              <h3 className="mt-4 font-display text-[1.6rem] font-semibold tracking-[-0.02em] text-cocoa sm:text-[1.8rem]">
                 {current.label}
               </h3>
-              <p className="mt-4 text-foreground/78">{current.body}</p>
+              <p className="mt-3 text-[0.94rem] leading-[1.65] text-cocoa/65">{current.body}</p>
               <ul className="mt-6 flex flex-wrap gap-2">
                 {current.detail.map((d) => (
                   <li
                     key={d}
-                    className="rounded-full border border-border bg-secondary px-4 py-2 text-sm text-secondary-foreground touch-target-sm"
+                    className="rounded-full border border-cocoa/10 bg-background px-3.5 py-1.5 text-[0.82rem] font-medium text-cocoa/70"
                   >
                     {d}
                   </li>
                 ))}
               </ul>
+              <div className="mt-6 flex items-center gap-2 text-xs font-medium text-cocoa/45">
+                <span className="h-px flex-1 bg-cocoa/10" />
+                <span>0{active + 1} / 04</span>
+              </div>
             </div>
           </div>
         </div>

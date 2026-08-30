@@ -7,7 +7,6 @@ import { Events } from "@/components/yiora/Events";
 import { Testimonials } from "@/components/yiora/Testimonials";
 import { Gallery } from "@/components/yiora/Gallery";
 import { Footer } from "@/components/yiora/Footer";
-import { CustomCursor } from "@/components/yiora/CustomCursor";
 
 const TITLE = "Y'IORA — Curated Lifestyle Events for Women";
 const DESCRIPTION =
@@ -48,7 +47,6 @@ function Index() {
       >
         Skip to content
       </a>
-      <CustomCursor />
       <Nav />
       <main id="main">
         <Hero />

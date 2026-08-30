@@ -13,15 +13,14 @@ const LINKS = [
 
 interface GlassRect {
   x: number;
-  y: number;
   width: number;
 }
 
 const GLASS_SPRING = {
   type: "spring" as const,
-  stiffness: 400,
-  damping: 30,
-  mass: 0.8,
+  stiffness: 380,
+  damping: 32,
+  mass: 0.7,
 };
 
 export function Nav() {
@@ -69,11 +68,9 @@ export function Nav() {
     const navRect = navEl.getBoundingClientRect();
     const navStyle = getComputedStyle(navEl);
     const pl = parseFloat(navStyle.paddingLeft);
-    const pt = parseFloat(navStyle.paddingTop);
     const elRect = el.getBoundingClientRect();
     return {
       x: elRect.left - (navRect.left + pl),
-      y: elRect.top - (navRect.top + pt) + elRect.height / 2,
       width: elRect.width,
     };
   }, []);
@@ -109,10 +106,10 @@ export function Nav() {
         aria-label="Primary"
         className={cn(
           "relative mx-3 hidden items-center justify-between gap-4 sm:flex sm:px-6",
-          "rounded-full px-4 py-2.5",
-          "bg-background/50 backdrop-blur-xl border border-border/40",
-          "shadow-[0_8px_32px_-8px_rgba(58,44,44,0.12)]",
-          scrolled && "bg-background/70 shadow-[0_12px_40px_-10px_rgba(58,44,44,0.18)]",
+          "rounded-full px-4 py-2",
+          "bg-background/80 backdrop-blur-[12px] border border-cocoa/10",
+          "shadow-[0_4px_24px_-12px_rgba(58,44,44,0.14),0_1px_3px_rgba(58,44,44,0.06)]",
+          scrolled && "bg-background/85 shadow-[0_8px_32px_-14px_rgba(58,44,44,0.18)]",
           "mx-auto max-w-6xl",
         )}
       >
@@ -163,31 +160,24 @@ export function Nav() {
           })}
         </ul>
 
-        {/* ── Liquid Glass Indicator (desktop only) ── */}
+        {/* ── Subtle ink pill — perfectly centered on link ── */}
         <AnimatePresence>
           {glass && (
             <motion.div
               key="liquid-glass"
               aria-hidden
-              initial={{ opacity: 0, x: glass.x, y: glass.y, width: glass.width }}
-              animate={{ opacity: 1, x: glass.x, y: glass.y, width: glass.width }}
-              exit={{ opacity: 0, scale: 0.95 }}
+              initial={{ opacity: 0, x: glass.x, width: glass.width }}
+              animate={{ opacity: 1, x: glass.x, width: glass.width }}
+              exit={{ opacity: 0, scale: 0.98 }}
               transition={GLASS_SPRING}
               className="pointer-events-none absolute z-0"
               style={{
-                height: "36px",
+                top: "50%",
+                height: "34px",
                 borderRadius: "9999px",
-                background:
-                  "linear-gradient(135deg, rgba(255,255,255,0.35) 0%, rgba(255,255,255,0.15) 50%, rgba(255,255,255,0.28) 100%)",
-                backdropFilter: "blur(20px) saturate(180%)",
-                WebkitBackdropFilter: "blur(20px) saturate(180%)",
-                boxShadow: [
-                  "inset 0 1px 1px rgba(255,255,255,0.5)",
-                  "inset 0 -1px 1px rgba(255,255,255,0.15)",
-                  "inset 0 0 20px rgba(255,255,255,0.08)",
-                  "0 4px 24px -4px rgba(181,131,141,0.2)",
-                  "0 0 0 1px rgba(255,255,255,0.3)",
-                ].join(", "),
+                background: "color-mix(in oklab, var(--blush) 88%, white)",
+                border: "1px solid color-mix(in oklab, var(--cocoa) 8%, transparent)",
+                boxShadow: "0 1px 6px rgba(58,44,44,0.08), inset 0 1px 0 rgba(255,255,255,0.9)",
                 translate: "0 -50%",
               }}
             />
@@ -198,12 +188,13 @@ export function Nav() {
         <a
           href="#join"
           className={cn(
-            "relative z-10 ml-2 flex items-center rounded-full",
-            "bg-cocoa px-5 py-2.5 text-sm font-medium text-background",
-            "min-h-[44px]",
-            "shadow-[0_18px_40px_-20px_color-mix(in_oklab,var(--rose)_55%,transparent)]",
-            "transition-all duration-300",
-            "hover:bg-berry",
+            "pressable relative z-10 ml-2 flex items-center rounded-full",
+            "bg-cocoa px-5 py-2.5 text-[0.88rem] font-[600] tracking-[-0.01em] text-background",
+            "min-h-[40px]",
+            "shadow-[0_6px_20px_-10px_rgba(58,44,44,0.3)]",
+            "transition-[transform,background-color,box-shadow] duration-200 ease-out",
+            "hover:bg-berry hover:shadow-[0_10px_28px_-12px_rgba(114,43,93,0.35)]",
+            "active:scale-[0.97]",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           )}
         >
@@ -219,9 +210,9 @@ export function Nav() {
         className={cn(
           "relative mx-3 flex items-center justify-between sm:hidden",
           "rounded-full px-4 py-2.5",
-          "bg-background/50 backdrop-blur-xl border border-border/40",
-          "shadow-[0_8px_32px_-8px_rgba(58,44,44,0.12)]",
-          scrolled && "bg-background/70 shadow-[0_12px_40px_-10px_rgba(58,44,44,0.18)]",
+          "bg-background/85 backdrop-blur-[12px] border border-cocoa/10",
+          "shadow-[0_4px_24px_-12px_rgba(58,44,44,0.14)]",
+          scrolled && "bg-background/90 shadow-[0_8px_32px_-14px_rgba(58,44,44,0.18)]",
         )}
       >
         <a href="#top" className="relative z-10 flex items-center gap-2.5" aria-label="Y'IORA home">

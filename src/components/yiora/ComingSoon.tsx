@@ -8,60 +8,59 @@ export function ComingSoon() {
   return (
     <section
       id="events"
-      className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-cocoa py-24 text-background sm:py-32"
+      className="relative flex min-h-[88svh] items-center justify-center overflow-hidden bg-cocoa py-24 text-background sm:py-32"
     >
-      {/* Bronze radial glow */}
-      <div aria-hidden className="bronze-glow absolute inset-0 opacity-80" />
+      {/* Bronze radial glow — muted, editorial */}
+      <div aria-hidden className="bronze-glow absolute inset-0 opacity-60" />
 
-      {/* Subtle smoke layers — candle haze / incense diffusion aesthetic */}
+      {/* Subtle smoke layers — keep but lighter */}
       {!reduced && (
         <>
-          <div aria-hidden className="smoke-layer smoke-layer-1" />
-          <div aria-hidden className="smoke-layer smoke-layer-2" />
-          <div aria-hidden className="smoke-layer smoke-layer-3" />
+          <div aria-hidden className="smoke-layer smoke-layer-1 opacity-60" />
+          <div aria-hidden className="smoke-layer smoke-layer-2 opacity-50" />
         </>
       )}
 
-      {/* Soft gradient veil for depth */}
       <div
         aria-hidden
-        className="absolute inset-0 bg-gradient-to-b from-background/15 via-transparent to-background/20"
+        className="absolute inset-0 bg-gradient-to-b from-cocoa/20 via-transparent to-cocoa/30"
       />
 
       <div className="relative mx-auto max-w-2xl px-4 text-center sm:px-6 lg:px-8">
         <Reveal>
-          <p className="text-xs tracking-[0.28em] uppercase text-honey">The calendar</p>
+          <p className="text-[0.68rem] tracking-[0.22em] uppercase font-semibold text-honey/90">The calendar</p>
         </Reveal>
 
-        <Reveal delay={120}>
-          <h2 className="mt-6 font-display text-[clamp(2rem,5vw,3.6rem)] leading-[1.03] font-bold text-balance">
-            Something beautiful is being prepared.
+        <Reveal delay={90}>
+          <h2 className="mt-6 font-display text-[clamp(2rem,4.8vw,3.3rem)] leading-[0.98] font-[650] tracking-[-0.03em] text-balance">
+            Something beautiful <span className="italic font-normal text-blush">is being prepared.</span>
           </h2>
         </Reveal>
 
-        <Reveal delay={240}>
-          <p className="mt-5 text-base leading-relaxed text-background/70 sm:text-lg">
-            The next gathering will be announced soon.
+        <Reveal delay={160}>
+          <p className="mt-6 text-[0.98rem] leading-relaxed text-background/70">
+            The next gathering will be announced soon — we open a few seats at a time, on purpose.
           </p>
         </Reveal>
 
-        <Reveal delay={360}>
-          <p className="mt-4 text-sm leading-relaxed text-background/55 sm:text-base">
+        <Reveal delay={220}>
+          <p className="mt-3 text-sm leading-relaxed text-background/45">
             Curated moments. Meaningful conversations. A seat waiting for you.
           </p>
         </Reveal>
 
-        <Reveal delay={480}>
+        <Reveal delay={300}>
           <a
             href="#join"
-            className="group mt-10 inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-background px-7 py-3 font-medium text-cocoa shadow-lift transition-all duration-500 hover:bg-blush touch-target"
+            className="pressable group mt-10 inline-flex min-h-[48px] items-center justify-center gap-2 rounded-full bg-background px-7 py-3 text-[0.94rem] font-[600] tracking-[-0.01em] text-cocoa shadow-soft transition-[transform,background-color] duration-200 ease-out hover:bg-blush active:scale-[0.97] touch-target"
           >
             Join the Circle
-            <span className="transition-transform duration-500 group-hover:translate-x-1">
+            <span className="transition-transform duration-200 ease-out group-hover:translate-x-0.5">
               &rarr;
             </span>
           </a>
         </Reveal>
+        <p className="mt-4 text-xs text-background/35">Be first to know — no spam, one letter a month.</p>
       </div>
     </section>
   );

@@ -82,36 +82,41 @@ export function Gallery() {
     <section id="gallery" className="scroll-mt-20 bg-background py-16 sm:py-24">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <Reveal className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
-          <h2 className="max-w-xl font-display text-[clamp(2rem,5vw,3.6rem)] leading-[1.03] font-bold text-cocoa text-balance">
-            The memories we
-            <span className="italic text-gradient-warm"> keep making</span>.
-          </h2>
-          <p className="max-w-xs text-sm text-foreground/70 sm:text-base">
+          <div>
+            <p className="kicker">Archive</p>
+            <h2 className="mt-3 max-w-xl font-display text-[clamp(2rem,4.6vw,3.2rem)] leading-[0.97] font-[650] tracking-[-0.03em] text-cocoa text-balance">
+              The memories we
+              <span className="italic font-normal text-gradient-warm"> keep making</span>.
+            </h2>
+          </div>
+          <p className="max-w-[28ch] text-[0.9rem] leading-[1.6] text-cocoa/60">
             Fragments from past gatherings. Every face here walked in as a stranger.
           </p>
         </Reveal>
 
-        <div ref={wrap} className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div ref={wrap} className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 auto-rows-[1fr]">
           {TILES.map((t, i) => (
             <figure
               key={t.alt}
-              data-depth={i * 0.015}
-              className={`group relative overflow-hidden rounded-[1.5rem] shadow-soft ${t.aspect} ${t.height}`}
+              data-depth={i * 0.01}
+              className={`group relative overflow-hidden rounded-[1.4rem] border border-cocoa/8 bg-card shadow-soft hover-lift ${t.aspect} ${t.height}`}
             >
               <img
                 src={t.src}
                 alt={t.alt}
                 loading="lazy"
                 decoding="async"
-                className="h-full w-full object-cover transition-transform duration-[1.4s] [transition-timing-function:var(--ease-silk)] group-hover:scale-[1.05]"
+                className="h-full w-full object-cover transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.03]"
               />
-              <figcaption className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-cocoa/85 to-transparent p-4 sm:p-5 text-sm text-background transition-transform duration-500 group-hover:translate-y-0">
+              <div aria-hidden className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300 ease-out group-hover:opacity-100 bg-gradient-to-t from-cocoa/55 via-transparent to-transparent" />
+              <figcaption className="absolute inset-x-0 bottom-0 translate-y-[100%] bg-gradient-to-t from-cocoa/80 to-transparent p-4 sm:p-5 text-[0.84rem] leading-snug text-background transition-transform duration-300 ease-out group-hover:translate-y-0">
                 {t.alt}
               </figcaption>
               <span className="sr-only">{`Gallery image ${i + 1}`}</span>
             </figure>
           ))}
         </div>
+        <p className="mt-6 text-center text-xs tracking-wide text-cocoa/35">Hover to read — tap on mobile. No filters, just film.</p>
       </div>
     </section>
   );
