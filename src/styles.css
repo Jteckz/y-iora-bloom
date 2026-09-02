@@ -672,6 +672,33 @@
   }
 }
 
+/* ---------- Voice Section ---------- */
+
+/* Card icon pulse glow */
+@keyframes voice-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 oklch(0.554 0.072 5 / 0);
+  }
+  50% {
+    box-shadow: 0 0 20px 4px oklch(0.554 0.072 5 / 0.12);
+  }
+}
+
+.voice-card:hover .bg-rose\/10 {
+  animation: voice-glow 2.4s var(--ease-silk) infinite;
+}
+
+/* Modal animation duration override — use tw-animate-css base, slower entrance */
+.voice-modal {
+  --tw-enter-translate-x: 0;
+  --tw-enter-translate-y: 0;
+  --tw-enter-scale: 0.94;
+  --tw-exit-scale: 0.96;
+  animation-duration: 0.4s;
+  animation-timing-function: var(--ease-silk);
+}
+
 /* Focus visible improvements for keyboard navigation */
 :focus-visible {
   outline: 3px solid var(--rose);
