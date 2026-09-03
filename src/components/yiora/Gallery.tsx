@@ -1,61 +1,34 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Reveal } from "./Reveal";
 import { usePrefersReducedMotion } from "@/hooks/use-reveal";
 import { useIsMobile } from "@/hooks/use-mobile";
-import g1 from "@/assets/gallery-1.jpg";
-import g2 from "@/assets/gallery-2.jpg";
-import g3 from "@/assets/gallery-3.jpg";
-import g4 from "@/assets/gallery-4.jpg";
-import g5 from "@/assets/gallery-5.jpg";
-import g6 from "@/assets/gallery-6.jpg";
 
-const TILES = [
-  {
-    src: g1,
-    alt: "Women laughing over a rooftop brunch at golden hour",
-    aspect: "aspect-[4/5]",
-    height: "h-[200px] sm:h-[280px]",
-  },
-  {
-    src: g2,
-    alt: "A sunrise wellness circle in a garden",
-    aspect: "aspect-[4/3]",
-    height: "h-[180px] sm:h-[220px]",
-  },
-  {
-    src: g6,
-    alt: "Portrait of a smiling woman against a blush wall",
-    aspect: "aspect-[3/4]",
-    height: "h-[220px] sm:h-[320px]",
-  },
-  {
-    src: g3,
-    alt: "Hands raising glasses at a candlelit dinner",
-    aspect: "aspect-[16/9]",
-    height: "h-[160px] sm:h-[200px]",
-  },
-  {
-    src: g4,
-    alt: "A woman dancing at a beach gathering at sunset",
-    aspect: "aspect-[4/3]",
-    height: "h-[180px] sm:h-[220px]",
-  },
-  {
-    src: g5,
-    alt: "Overhead view of a creative workshop table",
-    aspect: "aspect-[3/2]",
-    height: "h-[160px] sm:h-[200px]",
-  },
-];
+const STORAGE_KEY = "yiora-gallery";
 
 export function Gallery() {
   const wrap = useRef<HTMLDivElement>(null);
   const reduced = usePrefersReducedMotion();
   const isMobile = useIsMobile();
+  const [images, setImages] = useState<string[]>([]);
+
+  /* Load images from localStorage on mount */
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setImages(parsed);
+        }
+      }
+    } catch {
+      /* ignore malformed data */
+    }
+  }, []);
 
   /* Gentle parallax: each tile drifts at its own depth as the section passes. */
   useEffect(() => {
-    if (reduced || isMobile) return; // Disable parallax on mobile for performance
+    if (reduced || isMobile) return;
     const el = wrap.current;
     if (!el) return;
     let raf = 0;
@@ -76,7 +49,9 @@ export function Gallery() {
       window.removeEventListener("scroll", onScroll);
       cancelAnimationFrame(raf);
     };
-  }, [reduced, isMobile]);
+  }, [reduced, isMobile, images]);
+
+  const hasImages = images.length > 0;
 
   return (
     <section id="gallery" className="scroll-mt-20 bg-background py-16 sm:py-24">
@@ -91,27 +66,50 @@ export function Gallery() {
           </p>
         </Reveal>
 
-        <div ref={wrap} className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {TILES.map((t, i) => (
-            <figure
-              key={t.alt}
-              data-depth={i * 0.015}
-              className={`group relative overflow-hidden rounded-[1.5rem] shadow-soft ${t.aspect} ${t.height}`}
-            >
-              <img
-                src={t.src}
-                alt={t.alt}
-                loading="lazy"
-                decoding="async"
-                className="h-full w-full object-cover transition-transform duration-[1.4s] [transition-timing-function:var(--ease-silk)] group-hover:scale-[1.05]"
-              />
-              <figcaption className="absolute inset-x-0 bottom-0 translate-y-full bg-gradient-to-t from-cocoa/85 to-transparent p-4 sm:p-5 text-sm text-background transition-transform duration-500 group-hover:translate-y-0">
-                {t.alt}
-              </figcaption>
-              <span className="sr-only">{`Gallery image ${i + 1}`}</span>
-            </figure>
-          ))}
-        </div>
+        {hasImages ? (
+          <div ref={wrap} className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {images.map((src, i) => (
+              <figure
+                key={`${src.slice(-20)}-${i}`}
+                data-depth={i * 0.015}
+                className="group relative overflow-hidden rounded-[1.5rem] shadow-soft aspect-[4/3] h-[180px] sm:h-[220px]"
+              >
+                <img
+                  src={src}
+                  alt={`Gallery photo ${i + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="h-full w-full object-cover transition-transform duration-[1.4s] [transition-timing-function:var(--ease-silk)] group-hover:scale-[1.05]"
+                />
+                <span className="sr-only">{`Gallery image ${i + 1}`}</span>
+              </figure>
+            ))}
+          </div>
+        ) : (
+          <div className="mt-12 flex flex-col items-center justify-center rounded-[2rem] border border-cocoa/10 bg-blush/40 px-6 py-16 text-center sm:mt-14 sm:py-20">
+            <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-petal/20">
+              <svg
+                className="h-7 w-7 text-rose/70"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                strokeWidth={1.5}
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909M3.75 21h16.5a1.5 1.5 0 001.5-1.5V5.25a1.5 1.5 0 00-1.5-1.5H3.75a1.5 1.5 0 00-1.5 1.5v14.25a1.5 1.5 0 001.5 1.5z"
+                />
+              </svg>
+            </div>
+            <h3 className="font-display text-xl font-semibold text-cocoa sm:text-2xl">
+              Our gallery is being curated
+            </h3>
+            <p className="mt-2 max-w-sm text-sm leading-relaxed text-foreground/55 sm:text-base">
+              New memories will be displayed here soon.
+            </p>
+          </div>
+        )}
       </div>
     </section>
   );
