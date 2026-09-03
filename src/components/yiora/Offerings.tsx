@@ -63,11 +63,11 @@ export function Offerings() {
           {/* Interactive circles */}
           <Reveal className="lg:col-span-6">
             {isMobile ? (
-              // Mobile: Horizontal scrollable tabs
+              // Mobile: 2×2 grid
               <div
                 role="tablist"
                 aria-label="Offering categories"
-                className="flex gap-3 overflow-x-auto scrollbar-hide pb-4 -mx-4 px-4 snap-x"
+                className="grid grid-cols-2 gap-4 justify-items-center"
               >
                 {OFFERINGS.map((o, i) => {
                   const isActive = i === active;
@@ -81,7 +81,7 @@ export function Offerings() {
                       onClick={() => setActive(i)}
                       data-cursor="grow"
                       className={cn(
-                        "flex-shrink-0 min-h-[48px] items-center rounded-full font-display font-bold transition-all duration-500 touch-target px-6 py-3",
+                        "grid aspect-square w-full max-w-[160px] place-items-center rounded-full font-display font-bold transition-all duration-500 touch-target",
                         isActive
                           ? "text-background shadow-lift"
                           : "text-cocoa shadow-petal hover:scale-105",
@@ -92,7 +92,7 @@ export function Offerings() {
                           : `color-mix(in oklab, ${o.tint} 30%, var(--background))`,
                       }}
                     >
-                      <span className="text-base tracking-wide whitespace-nowrap">{o.label}</span>
+                      <span className="text-sm sm:text-base tracking-wide">{o.label}</span>
                     </button>
                   );
                 })}
