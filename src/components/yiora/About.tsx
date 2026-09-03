@@ -50,14 +50,13 @@ export function About() {
             </p>
 
             <div className="relative mt-8 w-full max-w-[340px]">
-              <div aria-hidden className="blob absolute -inset-4 bg-linen" />
               <img
                 src={duo}
                 alt="Women from the Y'IORA community laughing and embracing"
                 loading="lazy"
                 width={1275}
                 height={1452}
-                className="relative w-full aspect-[7:8] object-cover mix-blend-multiply rounded-[1.5rem]"
+                className="relative w-full aspect-[7:8] object-cover rounded-[1rem]"
               />
               <span className="absolute -right-2 bottom-6 rotate-[-6deg] rounded-full bg-honey px-3 py-1.5 font-display text-sm font-bold text-cocoa shadow-petal whitespace-nowrap">
                 since day one
