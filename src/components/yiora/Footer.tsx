@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import mark from "@/assets/gallery-8.png";
 import { PetalField } from "./PetalField";
@@ -109,6 +110,15 @@ export function Footer() {
             ))}
           </nav>
           <p className="text-xs">Curated events for women who want more.</p>
+        </div>
+
+        <div className="mt-4 text-center">
+          <Link
+            to="/admin"
+            className="inline-block text-[10px] tracking-widest uppercase text-cocoa/25 transition-colors hover:text-cocoa/50"
+          >
+            admin
+          </Link>
         </div>
       </div>
     </footer>
