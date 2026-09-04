@@ -12,6 +12,7 @@
 
 @theme inline {
   --font-display: "Lora", Georgia, serif;
+  --font-editorial: "Cormorant Garamond", "Lora", Georgia, serif;
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 4px);
