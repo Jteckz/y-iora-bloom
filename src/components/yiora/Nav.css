@@ -1,0 +1,241 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&display=swap");
+
+/*
+ * Y'IORA floating header + overlay menu.
+ * Spec: two-state header (at top / scrolled) + full-bleed overlay.
+ * CSS transitions only. No backdrop-filter anywhere in this component.
+ * No letter-spacing animation.
+ *
+ * NOTE on typography: the spec names "Cormorant Garant", which does not
+ * exist on Google Fonts — it is a typo for "Cormorant Garamond" (the
+ * family already used as this site's editorial font). The import above
+ * loads Cormorant Garamond 300/400, and the stack below keeps the
+ * spec's exact fallback chain verbatim after it.
+ */
+
+.yiora-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  height: 88px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid transparent;
+  box-shadow: none;
+  color: var(--color-foreground);
+  transition:
+    background-color 300ms ease-out,
+    border-color 300ms ease-out;
+}
+
+/* ── STATE 2: scrolled (window.scrollY >= 80) ── */
+.yiora-header.header--scrolled {
+  background: var(--color-background);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.dark .yiora-header.header--scrolled {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* ── Element A: wordmark ── */
+.yiora-wordmark {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  transform: translateX(-50%);
+  font-family:
+    "Cormorant Garant", "Cormorant Garamond", "Freight Display Pro", "Didot", Georgia, serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  letter-spacing: 0.25em;
+  text-indent: 0.25em; /* optically recenter the trailing letter-space */
+  color: currentColor;
+  text-decoration: none;
+  white-space: nowrap;
+  border-bottom: none;
+  transition:
+    left 300ms ease-out,
+    transform 300ms ease-out,
+    font-size 300ms ease-out;
+}
+
+.yiora-header.header--scrolled .yiora-wordmark {
+  left: 2rem;
+  transform: translateX(0);
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  text-indent: 0; /* left-aligned: no optical compensation needed */
+}
+
+/* ── Element B: hamburger ── */
+.yiora-hamburger {
+  position: absolute;
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: currentColor;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease-out;
+}
+
+.yiora-header.header--scrolled .yiora-hamburger {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.yiora-hamburger span {
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* ═══════════════════════════════════════════
+   Overlay menu system
+   ═══════════════════════════════════════════ */
+.yiora-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  background: var(--color-background);
+  opacity: 0;
+  transform: translateY(-8px);
+  transition:
+    opacity 300ms ease-in,
+    transform 300ms ease-in;
+}
+
+.yiora-overlay.yiora-overlay--open {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity 400ms ease-out,
+    transform 400ms ease-out;
+}
+
+/* Zone 1: close button */
+.yiora-close {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  color: var(--color-foreground);
+  cursor: pointer;
+}
+
+.yiora-close-box {
+  position: relative;
+  display: block;
+  width: 24px;
+  height: 24px;
+}
+
+.yiora-close-box span {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: currentColor;
+}
+
+.yiora-close-box span:first-child {
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.yiora-close-box span:last-child {
+  transform: translateY(-50%) rotate(-45deg);
+}
+
+/* Zone 2: navigation links */
+.yiora-overlay-nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: 6rem 1.5rem;
+  overflow-y: auto;
+}
+
+.yiora-overlay-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.yiora-overlay-link {
+  display: inline-block;
+  font-family:
+    "Cormorant Garant", "Cormorant Garamond", "Freight Display Pro", "Didot", Georgia, serif;
+  font-weight: 300;
+  font-style: normal;
+  font-size: clamp(2.5rem, 7vw, 5rem);
+  letter-spacing: 0.1em;
+  text-indent: 0.1em; /* optically recenter the trailing letter-space */
+  text-align: center;
+  color: var(--color-foreground);
+  line-height: 1.4;
+  text-decoration: none;
+  transition:
+    opacity 200ms ease-out,
+    transform 200ms ease-out;
+}
+
+.yiora-overlay-link:hover {
+  opacity: 0.5;
+  transform: translateX(6px);
+}
+
+.yiora-overlay-link::after {
+  content: "";
+  display: block;
+  width: 60%;
+  height: 1px;
+  margin: 0.15em auto 0;
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.dark .yiora-overlay-link::after {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .yiora-header,
+  .yiora-wordmark,
+  .yiora-hamburger,
+  .yiora-overlay,
+  .yiora-overlay-link {
+    transition-duration: 0.001ms !important;
+  }
+}
