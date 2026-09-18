@@ -1,12 +1,14 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import "./Nav.css";
 
 const LINKS = [
-  { href: "#about", label: "Our Story" },
-  { href: "#offerings", label: "Offerings" },
-  { href: "#events", label: "Events" },
-  { href: "#voices", label: "Voices" },
-  { href: "#gallery", label: "Gallery" },
+  { to: "/", label: "Home" },
+  { to: "/about", label: "Our Story" },
+  { to: "/offerings", label: "Offerings" },
+  { to: "/events", label: "Events" },
+  { to: "/fragments", label: "Fragments" },
+  { to: "/join", label: "Join" },
 ] as const;
 
 const SCROLL_THRESHOLD = 80;
@@ -83,9 +85,9 @@ export function Nav() {
   return (
     <>
       <header className={scrolled ? "yiora-header header--scrolled" : "yiora-header"}>
-        <a href="#top" className="yiora-wordmark" aria-label="Y'IORA — back to top">
+        <Link to="/" className="yiora-wordmark" aria-label="Y'IORA — home">
           Y&rsquo;IORA
-        </a>
+        </Link>
         <button
           type="button"
           className="yiora-hamburger"
@@ -123,10 +125,10 @@ export function Nav() {
           <nav aria-label="Site" className="yiora-overlay-nav">
             <ul className="yiora-overlay-list">
               {LINKS.map((link) => (
-                <li key={link.href}>
-                  <a href={link.href} className="yiora-overlay-link" onClick={closeOverlay}>
+                <li key={link.to}>
+                  <Link to={link.to} className="yiora-overlay-link" onClick={closeOverlay}>
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

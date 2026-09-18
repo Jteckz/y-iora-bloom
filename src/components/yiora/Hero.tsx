@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import mark from "@/assets/gallery-8.png";
 import { PetalField } from "./PetalField";
 import { usePrefersReducedMotion } from "@/hooks/use-reveal";
@@ -158,21 +159,21 @@ export function Hero() {
           </p>
 
           <div className="mt-8 flex w-full max-w-md flex-col items-stretch justify-center gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:items-center">
-            <a
-              href="#events"
+            <Link
+              to="/events"
               className="group inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-cocoa px-7 py-3 text-sm font-medium text-background shadow-lift transition-all duration-500 hover:bg-berry"
             >
               See what&apos;s coming
               <span aria-hidden className="transition-transform duration-500 group-hover:translate-x-1">
                 &rarr;
               </span>
-            </a>
-            <a
-              href="#about"
+            </Link>
+            <Link
+              to="/about"
               className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-cocoa/25 px-7 py-3 text-sm font-medium text-cocoa transition-all duration-500 hover:border-cocoa/60 hover:bg-background/60"
             >
               Our story
-            </a>
+            </Link>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import { usePrefersReducedMotion } from "@/hooks/use-reveal";
 import { Reveal } from "./Reveal";
 
@@ -52,15 +53,15 @@ export function ComingSoon() {
         </Reveal>
 
         <Reveal delay={480}>
-          <a
-            href="#join"
+          <Link
+            to="/join"
             className="group mt-10 inline-flex min-h-[48px] items-center justify-center gap-3 rounded-full bg-background px-7 py-3 font-medium text-cocoa shadow-lift transition-all duration-500 hover:bg-blush touch-target"
           >
             Join the Circle
             <span className="transition-transform duration-500 group-hover:translate-x-1">
               &rarr;
             </span>
-          </a>
+          </Link>
         </Reveal>
       </div>
     </section>

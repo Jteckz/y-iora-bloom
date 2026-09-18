@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from "react";
+import { Link } from "@tanstack/react-router";
 import { Reveal } from "./Reveal";
 import { ComingSoon } from "./ComingSoon";
 import g1 from "@/assets/gallery-1.jpg";
@@ -146,12 +147,12 @@ export function Events() {
                       {ev.place} &middot; {ev.seats}
                     </p>
                     <p className="mt-4 text-sm text-foreground/78">{ev.blurb}</p>
-                    <a
-                      href="#join"
+                    <Link
+                      to="/join"
                       className="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-berry touch-target w-full justify-center"
                     >
                       Reserve a seat
-                    </a>
+                    </Link>
                   </div>
                 </article>
               );
@@ -188,12 +189,12 @@ export function Events() {
                     {ev.place} &middot; {ev.seats}
                   </p>
                   <p className="mt-4 text-sm text-foreground/78">{ev.blurb}</p>
-                  <a
-                    href="#join"
+                  <Link
+                    to="/join"
                     className="mt-6 inline-flex min-h-[48px] items-center rounded-full bg-rose px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-berry touch-target"
                   >
                     Reserve a seat
-                  </a>
+                  </Link>
                 </div>
               </article>
             );
