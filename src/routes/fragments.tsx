@@ -1,27 +1,11 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { SiteShell } from "@/components/yiora/SiteShell";
-import { Testimonials } from "@/components/yiora/Testimonials";
-import { Gallery } from "@/components/yiora/Gallery";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 
+/**
+ * Legacy route — /fragments used to render Voices + Gallery combined.
+ * Kept as a redirect so old links/bookmarks land on /voices.
+ */
 export const Route = createFileRoute("/fragments")({
-  head: () => ({
-    meta: [
-      { title: "Fragments — Y'IORA" },
-      {
-        name: "description",
-        content:
-          "Small notes from the table and fragments from past gatherings — voices and memories from the Y'IORA community.",
-      },
-    ],
-  }),
-  component: FragmentsPage,
+  beforeLoad: () => {
+    throw redirect({ to: "/voices" });
+  },
 });
-
-function FragmentsPage() {
-  return (
-    <SiteShell>
-      <Testimonials />
-      <Gallery />
-    </SiteShell>
-  );
-}

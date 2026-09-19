@@ -14,8 +14,10 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as EventsRouteImport } from './routes/events'
 import { Route as FragmentsRouteImport } from './routes/fragments'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as JoinRouteImport } from './routes/join'
 import { Route as OfferingsRouteImport } from './routes/offerings'
+import { Route as VoicesRouteImport } from './routes/voices'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -42,6 +44,11 @@ const FragmentsRoute = FragmentsRouteImport.update({
   path: '/fragments',
   getParentRoute: () => rootRouteImport,
 } as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const JoinRoute = JoinRouteImport.update({
   id: '/join',
   path: '/join',
@@ -52,6 +59,11 @@ const OfferingsRoute = OfferingsRouteImport.update({
   path: '/offerings',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VoicesRoute = VoicesRouteImport.update({
+  id: '/voices',
+  path: '/voices',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -59,8 +71,10 @@ export interface FileRoutesByFullPath {
   '/admin': typeof AdminRoute
   '/events': typeof EventsRoute
   '/fragments': typeof FragmentsRoute
+  '/gallery': typeof GalleryRoute
   '/join': typeof JoinRoute
   '/offerings': typeof OfferingsRoute
+  '/voices': typeof VoicesRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -68,8 +82,10 @@ export interface FileRoutesByTo {
   '/admin': typeof AdminRoute
   '/events': typeof EventsRoute
   '/fragments': typeof FragmentsRoute
+  '/gallery': typeof GalleryRoute
   '/join': typeof JoinRoute
   '/offerings': typeof OfferingsRoute
+  '/voices': typeof VoicesRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -78,8 +94,10 @@ export interface FileRoutesById {
   '/admin': typeof AdminRoute
   '/events': typeof EventsRoute
   '/fragments': typeof FragmentsRoute
+  '/gallery': typeof GalleryRoute
   '/join': typeof JoinRoute
   '/offerings': typeof OfferingsRoute
+  '/voices': typeof VoicesRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -89,8 +107,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/events'
     | '/fragments'
+    | '/gallery'
     | '/join'
     | '/offerings'
+    | '/voices'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -98,8 +118,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/events'
     | '/fragments'
+    | '/gallery'
     | '/join'
     | '/offerings'
+    | '/voices'
   id:
     | '__root__'
     | '/'
@@ -107,8 +129,10 @@ export interface FileRouteTypes {
     | '/admin'
     | '/events'
     | '/fragments'
+    | '/gallery'
     | '/join'
     | '/offerings'
+    | '/voices'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -117,8 +141,10 @@ export interface RootRouteChildren {
   AdminRoute: typeof AdminRoute
   EventsRoute: typeof EventsRoute
   FragmentsRoute: typeof FragmentsRoute
+  GalleryRoute: typeof GalleryRoute
   JoinRoute: typeof JoinRoute
   OfferingsRoute: typeof OfferingsRoute
+  VoicesRoute: typeof VoicesRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -158,6 +184,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FragmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/join': {
       id: '/join'
       path: '/join'
@@ -172,6 +205,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OfferingsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/voices': {
+      id: '/voices'
+      path: '/voices'
+      fullPath: '/voices'
+      preLoaderRoute: typeof VoicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -181,8 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   AdminRoute: AdminRoute,
   EventsRoute: EventsRoute,
   FragmentsRoute: FragmentsRoute,
+  GalleryRoute: GalleryRoute,
   JoinRoute: JoinRoute,
   OfferingsRoute: OfferingsRoute,
+  VoicesRoute: VoicesRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
