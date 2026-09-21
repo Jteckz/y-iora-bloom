@@ -4,8 +4,8 @@ import { Reveal } from "./Reveal";
 const TIMELINE = [
   {
     year: "2026",
-    title: "A single table",
-    body: "Y'IORA began as one long table, one Sunday, and a handful of women who wanted somewhere honest to land.",
+    title: "Where It All Began",
+    body: "Y'IORA began with a vision: to create a space where women could grow, connect, and become all they were created to be.",
   },
   {
     year: "The idea",
