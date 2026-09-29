@@ -2,9 +2,11 @@ import { useEffect, useRef, useState } from "react";
 import { usePrefersReducedMotion } from "@/hooks/use-reveal";
 
 /**
- * Soft petal cursor. Purely decorative: hidden on touch devices,
- * for reduced-motion users, and never replaces the native cursor
- * for keyboard users (the OS cursor stays visible on inputs).
+ * Soft petal cursor. Purely decorative: hidden on touch devices and for
+ * reduced-motion users. The native OS cursor is never hidden — the petal
+ * dot and halo are an enhancement, so the pointer can never disappear.
+ * Rendered above the header (z 1000) and overlay (z 2000) so it stays
+ * visible in the navigation region.
  */
 export function CustomCursor() {
   const dot = useRef<HTMLDivElement>(null);
@@ -52,9 +54,8 @@ export function CustomCursor() {
   if (!active) return null;
 
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-[100]">
+    <div aria-hidden className="pointer-events-none fixed inset-0 z-[3000]">
       <style>{`
-        html.yiora-cursor, html.yiora-cursor a, html.yiora-cursor button { cursor: none; }
         html.yiora-cursor input, html.yiora-cursor textarea { cursor: text; }
         .yiora-halo { transition: width .4s var(--ease-silk), height .4s var(--ease-silk), background .4s var(--ease-silk); }
         .yiora-halo.is-grown { width: 68px; height: 68px; background: color-mix(in oklab, var(--petal) 34%, transparent); }
