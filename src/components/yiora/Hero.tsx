@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import mark from "@/assets/gallery-8.png";
 import { PetalField } from "./PetalField";
@@ -10,12 +10,26 @@ const STATS: Array<[string, string]> = [
   ["One table", "For women"],
 ];
 
+const GHOST_WORDS = ["gather", "bloom", "women", "love", "care", "thrive"];
+const GHOST_INTERVAL = 5000;
+
 /* Paper-grain texture: fractal-noise SVG, blended multiply at low opacity. */
 const GRAIN = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='240' height='240' filter='url(%23n)'/%3E%3C/svg%3E")`;
 
 export function Hero() {
   const wrap = useRef<HTMLElement>(null);
   const reduced = usePrefersReducedMotion();
+  const [ghostIndex, setGhostIndex] = useState(0);
+
+  /* Ghost word: slow crossfade through brand words. Static under reduced motion. */
+  useEffect(() => {
+    if (reduced) return;
+    const t = window.setInterval(
+      () => setGhostIndex((i) => (i + 1) % GHOST_WORDS.length),
+      GHOST_INTERVAL,
+    );
+    return () => window.clearInterval(t);
+  }, [reduced]);
 
   /* Living gradient: warmth follows the time of day and the pointer. */
   useEffect(() => {
@@ -68,6 +82,13 @@ export function Hero() {
           to { opacity: 1; transform: translateY(0); }
         }
         .hero-rise { animation: hero-rise 1.05s var(--ease-silk) both; }
+
+        @keyframes ghost-word {
+          0% { opacity: 0; transform: translateY(-4%) scale(0.985); }
+          14%, 80% { opacity: 0.07; transform: translateY(-6%) scale(1); }
+          100% { opacity: 0; transform: translateY(-8%) scale(1.015); }
+        }
+        .ghost-word { animation: ghost-word 5s var(--ease-silk) both; }
       `}</style>
 
       {/* ═══════════════════════════════════════════
@@ -91,18 +112,20 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_58%_50%_at_50%_46%,color-mix(in_oklab,var(--background)_90%,transparent)_0%,transparent_74%)]" />
         <div className="absolute inset-0 bg-gradient-to-b from-background/55 via-transparent to-background/75" />
         <div className="absolute inset-0 flex items-center justify-center overflow-hidden">
-          <span
-            className="font-editorial block text-center leading-none font-light text-cocoa italic select-none"
-            style={{
-              fontSize: "clamp(6rem, 24vw, 22rem)",
-              opacity: 0.07,
-              letterSpacing: "-0.04em",
-              transform: "translateY(-6%)",
-              whiteSpace: "nowrap",
-            }}
-          >
-            gather
-          </span>
+          <div className="relative h-full w-full">
+            <span
+              key={ghostIndex}
+              className={`font-editorial absolute inset-0 flex items-center justify-center text-center leading-none font-light text-cocoa italic select-none${reduced ? "" : " ghost-word"}`}
+              style={{
+                fontSize: "clamp(6rem, 24vw, 22rem)",
+                letterSpacing: "-0.04em",
+                whiteSpace: "nowrap",
+                opacity: reduced ? 0.07 : undefined,
+              }}
+            >
+              {GHOST_WORDS[ghostIndex]}
+            </span>
+          </div>
         </div>
         {/* hairline frame */}
         <div className="absolute inset-x-4 top-20 bottom-28 hidden border border-cocoa/10 sm:block" />
