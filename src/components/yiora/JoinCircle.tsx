@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
 import mark from "@/assets/gallery-8.png";
 import { PetalField } from "./PetalField";
@@ -11,7 +11,23 @@ const FLOWERS = ["Gather", "Move", "Create", "Grow", "Belong", "Bloom", "Rest", 
  * Moved verbatim from Footer (id="join" block) — no visual or content changes.
  */
 export function JoinCircle() {
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [phone, setPhone] = useState("");
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const trimmedName = name.trim();
+    const trimmedPhone = phone.trim();
+    if (!trimmedName || !trimmedPhone) {
+      toast.error("Please complete both fields", {
+        description: "Enter your name and phone number to continue.",
+      });
+      return;
+    }
+    const message = `Hello, I want to join Y'iora. My name is ${trimmedName} and my phone number is ${trimmedPhone}.`;
+    const url = `https://wa.me/255676235773?text=${encodeURIComponent(message)}`;
+    window.open(url, "_blank", "noopener,noreferrer");
+  };
 
   return (
     <section
@@ -39,25 +55,33 @@ export function JoinCircle() {
 
           <form
             className="mx-auto mt-6 flex w-full max-w-md flex-col gap-3"
-            onSubmit={(e) => {
-              e.preventDefault();
-              toast.success("Welcome to the circle", {
-                description: `We'll write to ${email} before the next gathering.`,
-              });
-              setEmail("");
-            }}
+            onSubmit={handleSubmit}
           >
-            <label htmlFor="join-email" className="sr-only">
-              Email address
+            <label htmlFor="join-name" className="sr-only">
+              Your Name
             </label>
-            <div className="flex flex-col gap-3 sm:flex-row">
+            <label htmlFor="join-phone" className="sr-only">
+              Phone Number
+            </label>
+            <div className="flex flex-col gap-3">
               <input
-                id="join-email"
-                type="email"
+                id="join-name"
+                type="text"
                 required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="you@yourname.com"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                placeholder="Your Name"
+                autoComplete="name"
+                className="min-h-[48px] flex-1 rounded-full border border-cocoa/20 bg-background/85 px-6 text-foreground placeholder:text-muted-foreground touch-target"
+              />
+              <input
+                id="join-phone"
+                type="tel"
+                required
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                placeholder="Phone Number"
+                autoComplete="tel"
                 className="min-h-[48px] flex-1 rounded-full border border-cocoa/20 bg-background/85 px-6 text-foreground placeholder:text-muted-foreground touch-target"
               />
               <button
