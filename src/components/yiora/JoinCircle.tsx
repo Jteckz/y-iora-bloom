@@ -24,7 +24,7 @@ export function JoinCircle() {
       });
       return;
     }
-    const message = `Hello, I want to join Y'iora. My name is ${trimmedName} and my phone number is ${trimmedPhone}.`;
+    const message = `Hello, I want to join. My name is ${trimmedName} and my phone number is ${trimmedPhone}.`;
     const url = `https://wa.me/255676235773?text=${encodeURIComponent(message)}`;
     window.open(url, "_blank", "noopener,noreferrer");
   };

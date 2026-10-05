@@ -1,4 +1,4 @@
-import duo from "@/assets/gallery-1.jpg";
+import imageAbout from "@/assets/imageAbout.png";
 import { Reveal } from "./Reveal";
 
 const TIMELINE = [
@@ -51,17 +51,17 @@ export function About() {
 
             <div className="relative mt-8 w-full max-w-[340px]">
               <img
-                src={duo}
-                alt="Women from the Y'IORA community laughing and embracing"
+                src={imageAbout}
+                alt="Rabya — CEO and Founder of Y'IORA"
                 loading="lazy"
                 width={1275}
                 height={1452}
                 className="relative w-full aspect-[7:8] object-cover rounded-[1rem]"
               />
-              <span className="absolute -right-2 bottom-6 rotate-[-6deg] rounded-full bg-honey px-3 py-1.5 font-display text-sm font-bold text-cocoa shadow-petal whitespace-nowrap">
-                since day one
-              </span>
             </div>
+            <p className="mt-2 w-full max-w-[340px] text-center text-xs italic text-foreground/50">
+              CEO &amp; FOUNDER OF Y&apos;IORA&nbsp;&nbsp;Rabya
+            </p>
           </Reveal>
 
           <ol className="lg:col-span-7 space-y-6 lg:pt-8">
